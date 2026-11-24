@@ -1,0 +1,2138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Pastry English Quiz — Book 2 (Ch. 16–20)</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pastry-bg: #FFFBF5;
+      --pastry-caramel: #B45309;
+      --pastry-amber: #D97706;
+      --pastry-espresso: #451A03;
+      --pastry-border: #FDE68A;
+      --pastry-border-soft: #F3E8D8;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      background-color: #EFE7DC;
+      color: #451A03;
+    }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-5px); }
+      40% { transform: translateX(5px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+    .animate-fade-up {
+      animation: fadeSlideUp 0.22s ease-out forwards;
+    }
+    .animate-shake {
+      animation: shake 0.34s ease-in-out;
+    }
+    /* Hide scrollbar for smooth horizontal filter chips */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-amber-200 selection:text-[#451A03]">
+
+  <!-- Mobile-First App Shell (Optimized for 360px–430px phones, max-w-lg centered on desktop) -->
+  <div id="app" class="max-w-lg mx-auto min-h-[100dvh] bg-[#FFFBF5] shadow-2xl flex flex-col relative overflow-x-hidden">
+
+    <!-- ==================== STICKY HEADER ==================== -->
+    <header id="stickyHeader" class="sticky top-0 z-30 bg-[#FFFBF5]/95 backdrop-blur-md border-b border-[#F3E8D8] shadow-xs">
+      <!-- Top Row -->
+      <div class="px-3.5 pt-3 pb-2 flex items-center justify-between gap-2">
+        <div class="min-w-0">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base leading-none" aria-hidden="true">🥐</span>
+            <h1 class="text-[15px] font-extrabold text-[#451A03] leading-tight truncate">
+              Pastry English Quiz
+            </h1>
+          </div>
+          <div class="flex items-center gap-1.5 mt-0.5 flex-wrap">
+            <span class="text-[11px] font-bold text-[#B45309]">Book 2 • Ch. 16–20</span>
+            <span class="text-[11px] text-amber-900/40">•</span>
+            <span id="headerScoreBadge" class="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+              0/50 Benar
+            </span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-1.5 shrink-0">
+          <!-- Daftar Soal (1–50) Grid Button -->
+          <button id="openDrawerBtn" type="button" aria-label="Buka Daftar Soal 1 sampai 50" class="min-h-[40px] px-2.5 rounded-xl bg-[#451A03] hover:bg-amber-950 active:scale-95 text-[#FFFBF5] text-xs font-bold flex items-center gap-1.5 transition">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            <span>Daftar (1–50)</span>
+          </button>
+
+          <!-- Hasil Button -->
+          <button id="openEvalBtn" type="button" aria-label="Lihat Hasil dan Evaluasi" class="min-h-[40px] px-2.5 rounded-xl bg-amber-100 hover:bg-amber-200 active:scale-95 text-[#451A03] text-xs font-bold flex items-center gap-1 transition">
+            <span>📊</span>
+            <span>Hasil</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Thin Global Progress Bar -->
+      <div class="w-full h-1.5 bg-amber-100">
+        <div id="globalProgressBar" class="h-full bg-gradient-to-r from-[#B45309] via-[#D97706] to-emerald-600 transition-all duration-300" style="width: 0%"></div>
+      </div>
+
+      <!-- Horizontal Scrollable Filter Bar -->
+      <div class="px-3.5 py-2 bg-amber-50/70 border-t border-[#F3E8D8] flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+        <button data-filter="all" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-[#B45309] text-white transition active:scale-95">Semua</button>
+        <button data-filter="ch16" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">Ch. 16</button>
+        <button data-filter="ch17" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">Ch. 17</button>
+        <button data-filter="ch18" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">Ch. 18</button>
+        <button data-filter="ch19" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">Ch. 19</button>
+        <button data-filter="ch20" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">Ch. 20</button>
+        <button data-filter="pg" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">PG</button>
+        <button data-filter="pgk" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">PGK</button>
+        <button data-filter="unsolved" class="filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95">Belum Benar</button>
+      </div>
+    </header>
+
+    <!-- ==================== QUIZ MAIN VIEW ==================== -->
+    <main id="quizView" class="flex-1 overflow-y-auto px-4 pt-4 pb-28">
+      <!-- Empty Filter State -->
+      <div id="emptyFilterCard" class="hidden bg-white rounded-3xl p-6 border border-emerald-200 shadow-sm text-center animate-fade-up">
+        <div class="text-4xl mb-2">🎉</div>
+        <h2 class="text-lg font-extrabold text-[#451A03]">Semua Soal Sudah Benar!</h2>
+        <p class="text-sm text-amber-900/75 mt-1.5 leading-relaxed">
+          Tidak ada soal yang tersisa pada filter ini. Kamu bisa membuka halaman evaluasi atau kembali meninjau seluruh 50 soal.
+        </p>
+        <div class="mt-4 flex flex-col gap-2">
+          <button id="emptyToEvalBtn" type="button" class="min-h-[52px] w-full rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition">
+            📊 Lihat Hasil &amp; Evaluasi
+          </button>
+          <button id="emptyToAllBtn" type="button" class="min-h-[48px] w-full rounded-2xl bg-amber-100 hover:bg-amber-200 text-[#451A03] font-bold text-sm transition">
+            Tampilkan Semua 50 Soal
+          </button>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <article id="questionCard" class="bg-white rounded-3xl p-5 border border-[#FDE68A] shadow-sm mb-4 animate-fade-up">
+        <!-- Badges Row -->
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span id="qChapterBadge" class="px-2.5 py-1 rounded-full text-[11px] font-extrabold bg-amber-100 text-[#B45309]">
+              Ch. 16 • Explaining Products
+            </span>
+            <span id="qTypeBadge" class="px-2.5 py-1 rounded-full text-[11px] font-extrabold bg-stone-100 text-[#451A03]">
+              Pilihan Ganda • Pilih 1
+            </span>
+          </div>
+          <span id="qAttemptBadge" class="text-[11px] font-bold text-amber-900/50"></span>
+        </div>
+
+        <!-- Question Counter -->
+        <div id="qNumberLabel" class="text-xs font-extrabold uppercase tracking-wider text-[#D97706] mb-1.5">
+          Soal 1 / 50
+        </div>
+
+        <!-- Question Text -->
+        <h2 id="questionText" class="text-[16.5px] font-bold text-[#451A03] leading-relaxed whitespace-pre-line">
+          Memuat pertanyaan...
+        </h2>
+
+        <!-- PGK Callout -->
+        <div id="pgkCallout" class="hidden mt-3 px-3.5 py-2.5 rounded-2xl bg-indigo-50 border border-indigo-200 text-xs font-semibold text-indigo-900 flex items-start gap-2">
+          <span class="text-sm leading-none mt-0.5">☑️</span>
+          <span><strong>Pilihan Ganda Kompleks — Pilih semua yang benar</strong> (bisa lebih dari 1 opsi).</span>
+        </div>
+      </article>
+
+      <!-- Options List [A, B, C, D] -->
+      <div id="optionsContainer" class="space-y-2.5 mb-4">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <!-- Smart Auto-Correction / Success Feedback Card -->
+      <div id="feedbackCard" class="hidden rounded-3xl p-4 border-2 mb-4 animate-fade-up">
+        <!-- Dynamically rendered -->
+      </div>
+    </main>
+
+    <!-- ==================== EVALUATION / RESULTS VIEW ==================== -->
+    <section id="evalView" class="hidden flex-1 overflow-y-auto px-4 pt-4 pb-10 animate-fade-up">
+      <!-- Score Hero Card -->
+      <div class="bg-gradient-to-br from-[#B45309] via-[#D97706] to-[#451A03] rounded-3xl p-5 text-white text-center shadow-lg shadow-amber-900/15 mb-4">
+        <div id="evalEmoji" class="text-4xl mb-1.5">🥐</div>
+        <h2 class="text-xl font-extrabold">Hasil &amp; Evaluasi</h2>
+        <p id="evalSub" class="text-xs text-amber-100 mt-1">Pastry English Quiz — Book 2 (Ch. 16–20)</p>
+
+        <div class="mt-4 grid grid-cols-2 gap-2.5">
+          <div class="bg-white/15 backdrop-blur-xs rounded-2xl p-3">
+            <div id="evalTotalScore" class="text-2xl font-extrabold">0/50</div>
+            <div class="text-[11px] text-amber-100 font-semibold mt-0.5">Total Benar</div>
+          </div>
+          <div class="bg-white/15 backdrop-blur-xs rounded-2xl p-3">
+            <div id="evalAccuracyPct" class="text-2xl font-extrabold">0%</div>
+            <div class="text-[11px] text-amber-100 font-semibold mt-0.5">Persentase Skor</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Status Counters -->
+      <div class="grid grid-cols-3 gap-2 mb-4 text-center">
+        <div class="bg-white rounded-2xl p-3 border border-emerald-200 shadow-xs">
+          <div id="statCorrect" class="text-xl font-extrabold text-emerald-600">0</div>
+          <div class="text-[11px] font-semibold text-amber-950/60 mt-0.5">Benar</div>
+        </div>
+        <div class="bg-white rounded-2xl p-3 border border-rose-200 shadow-xs">
+          <div id="statWrong" class="text-xl font-extrabold text-rose-600">0</div>
+          <div class="text-[11px] font-semibold text-amber-950/60 mt-0.5">Perlu Perbaikan</div>
+        </div>
+        <div class="bg-white rounded-2xl p-3 border border-[#F3E8D8] shadow-xs">
+          <div id="statUnanswered" class="text-xl font-extrabold text-stone-500">50</div>
+          <div class="text-[11px] font-semibold text-amber-950/60 mt-0.5">Belum Dijawab</div>
+        </div>
+      </div>
+
+      <!-- Perbandingan PG vs PGK -->
+      <div class="bg-white rounded-3xl p-4 border border-[#FDE68A] shadow-sm mb-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-sm font-extrabold text-[#451A03]">Perbandingan PG vs PGK</h3>
+          <span id="evalFirstTryChip" class="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">0 benar 1x coba</span>
+        </div>
+        <div class="grid grid-cols-2 gap-2.5">
+          <div class="p-3 rounded-2xl bg-amber-50/80 border border-[#FDE68A]">
+            <div class="text-[11px] font-bold text-[#B45309]">Pilihan Ganda (PG)</div>
+            <div id="evalPgScore" class="text-lg font-extrabold text-[#451A03] mt-0.5">0 / 35</div>
+            <div id="evalPgPct" class="text-[11px] text-amber-900/70 font-medium">0% selesai</div>
+          </div>
+          <div class="p-3 rounded-2xl bg-indigo-50/80 border border-indigo-200">
+            <div class="text-[11px] font-bold text-indigo-800">PG Kompleks (PGK)</div>
+            <div id="evalPgkScore" class="text-lg font-extrabold text-[#451A03] mt-0.5">0 / 15</div>
+            <div id="evalPgkPct" class="text-[11px] text-indigo-900/70 font-medium">0% selesai</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rincian Akurasi per Chapter (Ch. 16–20) -->
+      <div class="bg-white rounded-3xl p-4 border border-[#FDE68A] shadow-sm mb-5">
+        <h3 class="text-sm font-extrabold text-[#451A03] mb-3">Rincian Akurasi per Chapter (Ch. 16–20)</h3>
+        <div id="evalChapterList" class="space-y-3.5">
+          <!-- Dynamically injected -->
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="space-y-2.5">
+        <button id="retryUnsolvedBtn" type="button" class="hidden w-full min-h-[52px] py-3 px-5 rounded-2xl bg-rose-600 hover:bg-rose-700 active:scale-[0.99] text-white font-extrabold text-sm shadow-md shadow-rose-200 transition">
+          🔁 Ulangi Soal Belum Benar
+        </button>
+        <button id="backToQuizBtn" type="button" class="w-full min-h-[52px] py-3 px-5 rounded-2xl bg-[#B45309] hover:bg-amber-800 active:scale-[0.99] text-white font-bold text-sm shadow-md shadow-amber-200 transition">
+          ← Kembali ke Latihan Soal
+        </button>
+        <button id="evalResetAllBtn" type="button" class="w-full min-h-[50px] py-3 px-5 rounded-2xl bg-white border-2 border-rose-200 hover:bg-rose-50 active:scale-[0.99] text-rose-600 font-bold text-sm transition">
+          🔄 Reset Semua
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== STICKY BOTTOM BAR (THUMB ZONE) ==================== -->
+    <footer id="stickyBottomBar" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-lg z-30 bg-[#FFFBF5]/95 backdrop-blur-md border-t border-[#F3E8D8] px-3.5 py-2.5">
+      <div class="flex items-center gap-2">
+        <button id="prevBtn" type="button" class="min-h-[52px] px-3.5 rounded-2xl bg-amber-100/90 hover:bg-amber-200 active:scale-95 disabled:opacity-40 text-[#451A03] font-bold text-xs flex items-center justify-center gap-1 shrink-0 transition">
+          <span>←</span>
+          <span>Prev</span>
+        </button>
+
+        <button id="checkBtn" type="button" class="flex-1 min-h-[52px] px-4 rounded-2xl bg-[#B45309] hover:bg-amber-800 active:scale-[0.98] disabled:bg-stone-300 disabled:text-stone-500 text-white font-extrabold text-sm shadow-md shadow-amber-900/15 transition flex items-center justify-center gap-1.5">
+          Periksa Jawaban
+        </button>
+
+        <button id="nextBtn" type="button" class="min-h-[52px] px-3.5 rounded-2xl bg-amber-100/90 hover:bg-amber-200 active:scale-95 text-[#451A03] font-bold text-xs flex items-center justify-center gap-1 shrink-0 transition">
+          <span id="nextBtnLabel">Next</span>
+          <span>→</span>
+        </button>
+      </div>
+    </footer>
+
+    <!-- ==================== BOTTOM SHEET: DAFTAR SOAL (1–50) ==================== -->
+    <div id="drawerModal" class="hidden fixed inset-0 z-50 flex items-end justify-center bg-[#451A03]/50 backdrop-blur-xs">
+      <div class="w-full max-w-lg max-h-[84dvh] bg-[#FFFBF5] rounded-t-3xl flex flex-col shadow-2xl animate-fade-up">
+        <div class="w-10 h-1 bg-amber-300 rounded-full mx-auto mt-2.5"></div>
+
+        <div class="px-5 py-3.5 border-b border-[#F3E8D8] flex items-center justify-between">
+          <div>
+            <h3 class="font-extrabold text-base text-[#451A03]">Daftar Soal (1–50)</h3>
+            <p id="drawerSummaryText" class="text-xs font-semibold text-amber-900/75 mt-0.5">
+              Benar: 0 • Perlu Perbaikan: 0 • Belum: 50
+            </p>
+          </div>
+          <button id="closeDrawerBtn" type="button" aria-label="Tutup Daftar Soal" class="w-10 h-10 rounded-full bg-amber-100 hover:bg-amber-200 text-[#451A03] font-bold flex items-center justify-center">
+            ✕
+          </button>
+        </div>
+
+        <!-- Legend -->
+        <div class="px-5 py-2.5 bg-amber-50/70 border-b border-[#F3E8D8] flex flex-wrap gap-x-3.5 gap-y-1.5 text-[11px] font-bold text-[#451A03]/80">
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-600 inline-block"></span>Benar</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-rose-600 inline-block"></span>Perlu Perbaikan</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-stone-200 inline-block"></span>Belum</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full border-2 border-[#D97706] bg-white inline-block"></span>Aktif</span>
+        </div>
+
+        <!-- 5-Column Grid -->
+        <div id="drawerGrid" class="p-4 overflow-y-auto grid grid-cols-5 gap-2">
+          <!-- Dynamically injected -->
+        </div>
+
+        <!-- Drawer Footer: Hasil & Reset Progres -->
+        <div class="p-4 border-t border-[#F3E8D8] flex items-center gap-2">
+          <button id="drawerEvalBtn" type="button" class="flex-1 min-h-[48px] rounded-2xl bg-[#B45309] hover:bg-amber-800 text-white font-extrabold text-sm transition">
+            📊 Lihat Hasil
+          </button>
+          <button id="drawerResetBtn" type="button" class="min-h-[48px] px-4 rounded-2xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-600 font-bold text-sm transition">
+            🔄 Reset Progres
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== CUSTOM RESET CONFIRMATION MODAL (No window.confirm) ==================== -->
+    <div id="resetModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-5 bg-[#451A03]/55 backdrop-blur-xs">
+      <div class="w-full max-w-[350px] bg-[#FFFBF5] rounded-3xl p-6 shadow-2xl border border-[#FDE68A] animate-fade-up">
+        <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-2xl mx-auto mb-3">
+          🔄
+        </div>
+        <h3 class="text-lg font-extrabold text-[#451A03] text-center">Reset Semua Progres?</h3>
+        <p class="text-xs text-amber-950/75 text-center mt-1.5 leading-relaxed">
+          Seluruh jawaban, skor, dan catatan percobaan untuk 50 soal akan dihapus agar kamu bisa mulai latihan dari awal.
+        </p>
+        <div class="grid grid-cols-2 gap-2.5 mt-5">
+          <button id="cancelResetBtn" type="button" class="min-h-[48px] rounded-2xl bg-amber-100 hover:bg-amber-200 text-[#451A03] font-bold text-sm transition">
+            Batal
+          </button>
+          <button id="confirmResetBtn" type="button" class="min-h-[48px] rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-sm transition">
+            Ya, Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== VANILLA JAVASCRIPT: 50 COMPLETE PASTRY QUESTIONS & ENGINE ==================== -->
+  <script>
+    /**
+     * CHAPTER METADATA — English for Pastry Cook (Book 2, Chapters 16–20)
+     */
+    const CHAPTER_META = {
+      16: { short: "Ch. 16", title: "Explaining Products to Customers & Colleagues" },
+      17: { short: "Ch. 17", title: "Working with Colleagues & Chefs" },
+      18: { short: "Ch. 18", title: "Following Instructions & Asking for Clarification" },
+      19: { short: "Ch. 19", title: "Telephone Calls Part I: Answering Calls" },
+      20: { short: "Ch. 20", title: "Telephone Calls Part II: Taking & Delivering Messages" }
+    };
+
+    const LETTERS = ["A", "B", "C", "D"];
+
+    /**
+     * COMPLETE 50 QUESTIONS BANK (35 PG + 15 PGK; 10 per Chapter)
+     * ZERO-SPOILER RULE:
+     * - `wrongReasons` explains the exact flaw of EVERY wrong option (0..3) without mentioning the right answer.
+     * - `ruleHint` explains the grammar/workplace rule without leaking the correct option letter or text.
+     * - `successNote` is shown ONLY AFTER the user answers correctly.
+     */
+    const QUIZ_DATA = [
+      // ==================== CHAPTER 16: EXPLAINING PRODUCTS (Soal 1–10: 7 PG + 3 PGK) ====================
+      {
+        id: 1, chapter: 16, type: "pg",
+        question: "A customer points at a lemon tart in the display cabinet and wants to ask about its flavor. Which WH-question is the most natural and grammatically correct?",
+        options: [
+          "What does the lemon tart tastes like?",
+          "What does the lemon tart taste like?",
+          "How many does the lemon tart taste like?",
+          "Who does the lemon tart taste like?"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Setelah kata bantu 'does', kata kerja utama tidak boleh diberi akhiran '-s' ('tastes'), harus kembali ke bentuk dasar (V1).",
+          2: "'How many' digunakan untuk menanyakan jumlah benda yang bisa dihitung, bukan menanyakan rasa makanan.",
+          3: "'Who' digunakan untuk menanyakan orang, bukan rasa kue atau tart."
+        },
+        ruleHint: "Ingat pola bertanya tentang rasa di Chapter 16: 'What does + [nama produk] + BASE VERB + like?'. Pastikan kata kerjanya tanpa '-s' setelah 'does'.",
+        successNote: "Benar! 'What does the lemon tart taste like?' memakai 'What' dan kata kerja dasar 'taste' setelah 'does'."
+      },
+      {
+        id: 2, chapter: 16, type: "pg",
+        question: "Complete the customer's two questions at Sweet Corner Pastry Shop:\n'______ is a slice of cheesecake, and ______ cookies are in one box?'",
+        options: [
+          "How many / how much",
+          "How much / how many",
+          "Where / who",
+          "When / why"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Terbalik! Menanyakan HARGA memakai 'How much', sedangkan menanyakan JUMLAH benda yang bisa dihitung ('cookies') memakai 'How many'.",
+          2: "'Where' menanyakan tempat dan 'Who' menanyakan orang—keduanya tidak cocok untuk harga dan jumlah kukis.",
+          3: "'When' menanyakan waktu dan 'Why' menanyakan alasan—tidak cocok dengan konteks harga dan isi kotak."
+        },
+        ruleHint: "Bedakan di Chapter 16: satu frasa tanya dipakai untuk HARGA (price) dan benda uncountable, sedangkan satu lagi dipakai untuk JUMLAH benda jamak (plural noun).",
+        successNote: "Tepat! 'How much is a slice of cheesecake?' (harga) dan 'how many cookies are in one box?' (jumlah)."
+      },
+      {
+        id: 3, chapter: 16, type: "pg",
+        question: "Make this direct/impolite sentence sound polite for a pastry shop customer:\nInstead of saying 'You want what?', what should the staff say?",
+        options: [
+          "Give me your order!",
+          "What would you like?",
+          "Wait! Buy this cake.",
+          "Tell me fast!"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'Give me your order!' berbentuk perintah langsung yang terdengar kasar kepada pelanggan.",
+          2: "'Wait! Buy this cake.' terlalu memaksa dan tidak ramah dalam customer service.",
+          3: "'Tell me fast!' sangat tidak sopan diucapkan kepada pelanggan di toko roti."
+        },
+        ruleHint: "Cek tabel Useful Expressions for Customers di Chapter 16: gunakan bentuk pertanyaan sopan dengan 'would like' saat menanyakan pilihan pelanggan.",
+        successNote: "Sopan dan profesional! 'What would you like?' adalah cara terbaik menanyakan pesanan pelanggan."
+      },
+      {
+        id: 4, chapter: 16, type: "pg",
+        question: "A customer asks for the price of a special cake, and you are not sure yet. Instead of saying 'I don't know.', what is the MOST POLITE response from Chapter 16?",
+        options: [
+          "Wait!",
+          "Let me check that for you.",
+          "Too expensive for you.",
+          "Ask someone else."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'Wait!' satu kata saja terdengar kasar; jika meminta menunggu seharusnya 'Just a moment, please.'",
+          2: "Mengatakan produk terlalu mahal bagi pelanggan tidak sopan dan melanggar etika pelayanan.",
+          3: "Menyuruh pelanggan bertanya sendiri ke orang lain tidak menunjukkan sikap membantu."
+        },
+        ruleHint: "Ingat panduan Chapter 16: saat belum tahu informasi atau harga, jangan sekadar menjawab 'I don't know', melainkan tawarkan diri untuk mengeceknya dengan sopan.",
+        successNote: "Benar! 'Let me check that for you.' terdengar ramah, sopan, dan membantu."
+      },
+      {
+        id: 5, chapter: 16, type: "pg",
+        question: "A slice of chocolate cake costs Rp35,000, and a chocolate cupcake costs Rp15,000. How do you state these two prices correctly in English?",
+        options: [
+          "Thirty-five hundred rupiahs / fifty thousand rupiahs",
+          "Thirty-five thousand rupiahs / fifteen thousand rupiahs",
+          "Three thousand five rupiahs / five thousand rupiahs",
+          "Thirteen-five thousand rupiahs / fifty thousand rupiahs"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'hundred' adalah ratusan (bukan ribuan), dan 'fifty' adalah 50 (bukan 15).",
+          2: "'Three thousand five' adalah 3.005, dan 'five thousand' adalah 5.000.",
+          3: "'Thirteen-five' bukan penyebutan angka 35 yang benar, dan 'fifty' adalah 50 (bukan 15)."
+        },
+        ruleHint: "Cek tabel Numbers & Prices Chapter 16: 'ribu' = thousand; bedakan 15 ('fifteen') dengan 50 ('fifty'), serta 35 ('thirty-five').",
+        successNote: "Tepat! Rp35,000 = thirty-five thousand rupiahs, dan Rp15,000 = fifteen thousand rupiahs."
+      },
+      {
+        id: 6, chapter: 16, type: "pg",
+        question: "Talking About Discounts: The original price of a birthday cake box is Rp50,000. Today there is a 10% discount ('ten percent off'). How much is the discounted price?",
+        options: [
+          "Forty thousand rupiahs",
+          "Forty-five thousand rupiahs",
+          "Fifty-five thousand rupiahs",
+          "Fifteen thousand rupiahs"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Rp40,000 adalah potongan 20% (Rp10,000), bukan 10% dari Rp50,000.",
+          2: "Rp55,000 justru lebih mahal (ditambah 10%), padahal 'off' berarti potongan/diskon harga.",
+          3: "Rp15,000 terlalu jauh di bawah potongan 10% dari Rp50,000."
+        },
+        ruleHint: "Hitung 10% dari 50.000 (= 5.000), lalu kurangkan dari harga asli (50.000 - 5.000). Cek juga contoh Talking About Discounts di Chapter 16.",
+        successNote: "Benar! 10% dari Rp50,000 adalah Rp5,000, sehingga harga setelah diskon adalah Rp45,000 (forty-five thousand rupiahs)."
+      },
+      {
+        id: 7, chapter: 16, type: "pg",
+        question: "A customer loves rich chocolate desserts. Looking at the Sweet Corner menu, which description best matches CHOCOLATE BROWNIES?",
+        options: [
+          "Crispy outside, buttery, and crescent-shaped.",
+          "Rich chocolate flavor and moist texture.",
+          "Slightly sour with fresh strawberries on top.",
+          "Salty and mild white sandwich bread."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Renyah di luar, beraroma mentega, dan berbentuk bulan sabit adalah ciri butter croissant, bukan brownies.",
+          2: "Sedikit asam dengan stroberi segar di atasnya adalah ciri fruit/strawberry tart.",
+          3: "Asin dan ringan seperti roti tawar bukan karakter chocolate brownies."
+        },
+        ruleHint: "Cek menu Sweet Corner Pastry Shop di Chapter 16: cari deskripsi rasa cokelat yang pekat (rich) dan tekstur yang lembap (moist).",
+        successNote: "Tepat! Chocolate brownies memiliki 'rich chocolate flavor and moist texture'."
+      },
+      {
+        id: 8, chapter: 16, type: "pgk",
+        question: "Select ALL grammatically CORRECT WH-questions a customer can ask at a pastry shop.",
+        options: [
+          "Which cake would you recommend?",
+          "How much are these chocolate chip cookies?",
+          "What are the ingredients of this cheesecake?",
+          "How much pieces are in this box?"
+        ],
+        correct: [0, 1, 2],
+        wrongReasons: {
+          3: "'pieces' adalah kata benda jamak yang bisa dihitung (countable plural), sehingga menanyakan jumlah buahnya tidak boleh memakai 'How much', melainkan 'How many'."
+        },
+        ruleHint: "Periksa fungsi tiap kata tanya Chapter 16: 'Which' (pilihan), 'How much + are' (harga benda jamak), 'What are' (daftar bahan), dan 'How many' (jumlah benda terhitung).",
+        successNote: "Mantap! A, B, dan C semuanya pertanyaan yang benar dan sangat sering dipakai di toko pastry."
+      },
+      {
+        id: 9, chapter: 16, type: "pgk",
+        question: "Select ALL POLITE customer-service expressions from Chapter 16.",
+        options: [
+          "Just a moment, please.",
+          "I would recommend our chocolate cake. It is one of our best-selling products.",
+          "You want what? Hurry up!",
+          "Thank you for your purchase. Is there anything else?"
+        ],
+        correct: [0, 1, 3],
+        wrongReasons: {
+          2: "'You want what? Hurry up!' sangat kasar dan tidak profesional untuk diucapkan kepada pelanggan."
+        },
+        ruleHint: "Pilih semua ungkapan yang ramah, sopan, dan sesuai standar pelayanan toko pastry di Chapter 16.",
+        successNote: "Benar! A, B, dan D adalah ungkapan pelayanan pelanggan yang sopan dan profesional."
+      },
+      {
+        id: 10, chapter: 16, type: "pgk",
+        question: "Select ALL texture/taste adjectives that are CORRECTLY matched with their Indonesian meaning.",
+        options: {
+          // array below!
+        }
+      }
+    ];
+
+    // Replace QUIZ_DATA cleanly with all 50 complete questions (all options as arrays)
+    QUIZ_DATA.length = 0;
+
+    const QUESTIONS = [
+      // ==================== CHAPTER 16 (Soal 1–10: 7 PG + 3 PGK) ====================
+      {
+        id: 1, chapter: 16, type: "pg",
+        question: "A customer points at a lemon tart in the display cabinet and wants to ask about its flavor. Which WH-question is the most natural and grammatically correct?",
+        options: [
+          "What does the lemon tart tastes like?",
+          "What does the lemon tart taste like?",
+          "How many does the lemon tart taste like?",
+          "Who does the lemon tart taste like?"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Setelah kata bantu 'does', kata kerja utama tidak boleh diberi akhiran '-s' ('tastes'), harus kembali ke bentuk dasar (V1).",
+          2: "'How many' digunakan untuk menanyakan jumlah benda yang bisa dihitung, bukan menanyakan rasa makanan.",
+          3: "'Who' digunakan untuk menanyakan orang, bukan rasa kue atau tart."
+        },
+        ruleHint: "Ingat pola bertanya tentang rasa di Chapter 16: 'What does + [nama produk] + BASE VERB + like?'. Pastikan kata kerjanya tanpa '-s' setelah 'does'.",
+        successNote: "Benar! 'What does the lemon tart taste like?' memakai 'What' dan kata kerja dasar 'taste' setelah 'does'."
+      },
+      {
+        id: 2, chapter: 16, type: "pg",
+        question: "Complete the customer's two questions at Sweet Corner Pastry Shop:\n'______ is a slice of cheesecake, and ______ cookies are in one box?'",
+        options: [
+          "How many / how much",
+          "How much / how many",
+          "Where / who",
+          "When / why"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Terbalik! Menanyakan HARGA memakai 'How much', sedangkan menanyakan JUMLAH benda yang bisa dihitung ('cookies') memakai 'How many'.",
+          2: "'Where' menanyakan tempat dan 'Who' menanyakan orang—keduanya tidak cocok untuk harga dan jumlah kukis.",
+          3: "'When' menanyakan waktu dan 'Why' menanyakan alasan—tidak cocok dengan konteks harga dan isi kotak."
+        },
+        ruleHint: "Bedakan di Chapter 16: satu frasa tanya dipakai untuk HARGA (price), sedangkan satu lagi dipakai untuk JUMLAH benda jamak (plural noun).",
+        successNote: "Tepat! 'How much is a slice of cheesecake?' (harga) dan 'how many cookies are in one box?' (jumlah)."
+      },
+      {
+        id: 3, chapter: 16, type: "pg",
+        question: "Make this direct sentence sound polite for a pastry shop customer:\nInstead of saying 'You want what?', what should the staff say?",
+        options: [
+          "Give me your order!",
+          "What would you like?",
+          "Wait! Buy this cake.",
+          "Tell me fast!"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'Give me your order!' berbentuk perintah langsung yang terdengar kasar kepada pelanggan.",
+          2: "'Wait! Buy this cake.' terlalu memaksa dan tidak ramah dalam pelayanan pelanggan.",
+          3: "'Tell me fast!' sangat tidak sopan diucapkan kepada pelanggan di toko roti."
+        },
+        ruleHint: "Cek tabel Useful Expressions for Customers di Chapter 16: gunakan bentuk pertanyaan sopan dengan 'would like' saat menanyakan pilihan pelanggan.",
+        successNote: "Sopan dan profesional! 'What would you like?' adalah cara terbaik menanyakan pesanan pelanggan."
+      },
+      {
+        id: 4, chapter: 16, type: "pg",
+        question: "A customer asks for the price of a special cake, and you are not sure yet. Instead of saying 'I don't know.', what is the MOST POLITE response from Chapter 16?",
+        options: [
+          "Wait!",
+          "Let me check that for you.",
+          "Too expensive for you.",
+          "Ask someone else."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'Wait!' satu kata saja terdengar kasar; jika meminta menunggu seharusnya 'Just a moment, please.'",
+          2: "Mengatakan produk terlalu mahal bagi pelanggan tidak sopan dan melanggar etika pelayanan.",
+          3: "Menyuruh pelanggan bertanya sendiri ke orang lain tidak menunjukkan sikap membantu."
+        },
+        ruleHint: "Ingat panduan Chapter 16: saat belum tahu informasi atau harga, jangan sekadar menjawab 'I don't know', melainkan tawarkan diri untuk mengeceknya dengan sopan.",
+        successNote: "Benar! 'Let me check that for you.' terdengar ramah, sopan, dan membantu."
+      },
+      {
+        id: 5, chapter: 16, type: "pg",
+        question: "A slice of chocolate cake costs Rp35,000, and a chocolate cupcake costs Rp15,000. How do you state these two prices correctly in English?",
+        options: [
+          "Thirty-five hundred rupiahs / fifty thousand rupiahs",
+          "Thirty-five thousand rupiahs / fifteen thousand rupiahs",
+          "Three thousand five rupiahs / five thousand rupiahs",
+          "Thirteen-five thousand rupiahs / fifty thousand rupiahs"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'hundred' adalah ratusan (bukan ribuan), dan 'fifty' adalah 50 (bukan 15).",
+          2: "'Three thousand five' adalah 3.005, dan 'five thousand' adalah 5.000.",
+          3: "'Thirteen-five' bukan penyebutan angka 35 yang benar, dan 'fifty' adalah 50 (bukan 15)."
+        },
+        ruleHint: "Cek tabel Numbers & Prices Chapter 16: 'ribu' = thousand; bedakan 15 ('fifteen') dengan 50 ('fifty'), serta 35 ('thirty-five').",
+        successNote: "Tepat! Rp35,000 = thirty-five thousand rupiahs, dan Rp15,000 = fifteen thousand rupiahs."
+      },
+      {
+        id: 6, chapter: 16, type: "pg",
+        question: "Talking About Discounts: The original price of a birthday cake box is Rp50,000. Today there is a 10% discount ('ten percent off'). How much is the discounted price?",
+        options: [
+          "Forty thousand rupiahs",
+          "Forty-five thousand rupiahs",
+          "Fifty-five thousand rupiahs",
+          "Fifteen thousand rupiahs"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Rp40,000 adalah potongan 20% (Rp10,000), bukan 10% dari Rp50,000.",
+          2: "Rp55,000 justru lebih mahal (ditambah 10%), padahal 'off' berarti potongan/diskon harga.",
+          3: "Rp15,000 terlalu jauh di bawah potongan 10% dari Rp50,000."
+        },
+        ruleHint: "Hitung 10% dari 50.000 (= 5.000), lalu kurangkan dari harga asli (50.000 - 5.000). Cek juga contoh Talking About Discounts di Chapter 16.",
+        successNote: "Benar! 10% dari Rp50,000 adalah Rp5,000, sehingga harga setelah diskon adalah Rp45,000 (forty-five thousand rupiahs)."
+      },
+      {
+        id: 7, chapter: 16, type: "pg",
+        question: "A customer loves rich chocolate desserts. Looking at the Sweet Corner menu, which description best matches CHOCOLATE BROWNIES?",
+        options: [
+          "Crispy outside, buttery, and crescent-shaped.",
+          "Rich chocolate flavor and moist texture.",
+          "Slightly sour with fresh strawberries on top.",
+          "Salty and mild white sandwich bread."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Renyah di luar, beraroma mentega, dan berbentuk bulan sabit adalah ciri butter croissant, bukan brownies.",
+          2: "Sedikit asam dengan stroberi segar di atasnya adalah ciri fruit/strawberry tart.",
+          3: "Asin dan ringan seperti roti tawar bukan karakter chocolate brownies."
+        },
+        ruleHint: "Cek menu Sweet Corner Pastry Shop di Chapter 16: cari deskripsi rasa cokelat yang pekat (rich) dan tekstur yang lembap (moist).",
+        successNote: "Tepat! Chocolate brownies memiliki 'rich chocolate flavor and moist texture'."
+      },
+      {
+        id: 8, chapter: 16, type: "pgk",
+        question: "Select ALL grammatically CORRECT WH-questions a customer can ask at a pastry shop.",
+        options: [
+          "Which cake would you recommend?",
+          "How much are these chocolate chip cookies?",
+          "What are the ingredients of this cheesecake?",
+          "How much pieces are in this box?"
+        ],
+        correct: [0, 1, 2],
+        wrongReasons: {
+          3: "'pieces' adalah kata benda jamak yang bisa dihitung (countable plural), sehingga menanyakan jumlah buahnya tidak boleh memakai 'How much', melainkan 'How many'."
+        },
+        ruleHint: "Periksa fungsi tiap kata tanya Chapter 16: 'Which' (pilihan), 'How much + are' (harga benda jamak), 'What are' (daftar bahan), dan 'How many' (jumlah benda terhitung).",
+        successNote: "Mantap! A, B, dan C semuanya pertanyaan yang benar dan sering dipakai di toko pastry."
+      },
+      {
+        id: 9, chapter: 16, type: "pgk",
+        question: "Select ALL POLITE customer-service expressions from Chapter 16.",
+        options: [
+          "Just a moment, please.",
+          "I would recommend our chocolate cake. It is one of our best-selling products.",
+          "You want what? Hurry up!",
+          "Thank you for your purchase. Is there anything else?"
+        ],
+        correct: [0, 1, 3],
+        wrongReasons: {
+          2: "'You want what? Hurry up!' sangat kasar dan tidak profesional untuk diucapkan kepada pelanggan."
+        },
+        ruleHint: "Pilih semua ungkapan yang ramah, sopan, dan sesuai standar pelayanan toko pastry di Chapter 16.",
+        successNote: "Benar! A, B, dan D adalah ungkapan pelayanan pelanggan yang sopan dan profesional."
+      },
+      {
+        id: 10, chapter: 16, type: "pgk",
+        question: "Select ALL taste and texture adjectives that are CORRECTLY matched with their Indonesian meaning.",
+        options: [
+          "Moist → Lembap",
+          "Chewy → Kenyal",
+          "Bitter → Manis",
+          "Crispy → Renyah"
+        ],
+        correct: [0, 1, 3],
+        wrongReasons: {
+          2: "'Bitter' berarti PAHIT (seperti dark chocolate), bukan manis ('sweet')."
+        },
+        ruleHint: "Cek kembali Word Bank Describing Taste & Texture di Chapter 16 (sweet, bitter, sour, moist, chewy, crispy, fluffy).",
+        successNote: "Tepat! Moist (lembap), Chewy (kenyal), dan Crispy (renyah) semuanya cocok dengan artinya."
+      },
+
+      // ==================== CHAPTER 17: WORKING WITH COLLEAGUES & CHEFS (Soal 11–20: 7 PG + 3 PGK) ====================
+      {
+        id: 11, chapter: 17, type: "pg",
+        question: "Chef: 'Have you and Rina prepared the cake batter?'\nAssistant: 'Yes, Chef. We ______ the batter, and Rina ______ the chocolate cream.'",
+        options: [
+          "has mixed / have made",
+          "have mixed / has made",
+          "have mix / has make",
+          "had mixing / has making"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Terbalik! Subjek jamak 'We' harus memakai 'have', sedangkan subjek tunggal 'Rina' (she) harus memakai 'has'.",
+          2: "Pada Present Perfect, setelah 'have/has' kata kerja harus diubah menjadi Past Participle (V3), bukan V1 ('mix / make').",
+          3: "Setelah 'have/has' dalam Present Perfect aktif, gunakan V3, bukan bentuk '-ing'."
+        },
+        ruleHint: "Ingat rumus Present Perfect Chapter 17: 'I/You/We/They + have + V3' dan 'He/She/It + has + V3'.",
+        successNote: "Benar! 'We have mixed' (jamak + V3) dan 'Rina has made' (tunggal + V3 dari 'make')."
+      },
+      {
+        id: 12, chapter: 17, type: "pg",
+        question: "Chef: 'Have you decorated the 30 cupcakes ______?'\nBudi: 'Not yet, Chef. I ______ decorated them ______.'",
+        options: [
+          "already / haven't / already",
+          "yet / haven't / yet",
+          "just / hasn't / yet",
+          "yet / didn't / already"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'already' dipakai pada kalimat positif untuk menekankan sudah selesai, bukan di akhir pertanyaan maupun kalimat negatif.",
+          2: "Subjek 'I' tidak boleh memakai 'hasn't' (khusus he/she/it), dan 'just' tidak diletakkan di akhir kalimat tanya.",
+          3: "'didn't' dipakai untuk Simple Past (diikuti V1, bukan V3 'decorated'), dan 'already' tidak dipakai di akhir kalimat negatif."
+        },
+        ruleHint: "Ingat aturan Already, Yet & Just di Chapter 17: kata mana yang lazim diletakkan di akhir kalimat TANYA dan kalimat NEGATIF, serta apa bentuk negatif 'have' untuk subjek 'I'?",
+        successNote: "Tepat! 'yet' dipakai di akhir pertanyaan & kalimat negatif, dan 'I' berpasangan dengan 'haven't'."
+      },
+      {
+        id: 13, chapter: 17, type: "pg",
+        question: "The pastry chef arrived only one minute ago. Which sentence best reports this recent action using Present Perfect?",
+        options: [
+          "The pastry chef has just arrived.",
+          "The pastry chef have just arrived.",
+          "The pastry chef has arrived yet.",
+          "The pastry chef is just arrived."
+        ],
+        correct: [0],
+        wrongReasons: {
+          1: "Subjek 'The pastry chef' adalah tunggal (he/she), sehingga tidak boleh memakai 'have'.",
+          2: "'yet' digunakan pada kalimat negatif dan tanya, bukan kalimat positif untuk menyatakan baru saja tiba.",
+          3: "Kalimat aktif Present Perfect memakai 'has + V3', bukan 'is + V3'."
+        },
+        ruleHint: "Di Chapter 17, gunakan kata keterangan khusus untuk hal yang BARU SAJA terjadi di antara 'has' (untuk subjek tunggal) dan V3.",
+        successNote: "Benar! 'The pastry chef has just arrived.' menggunakan 'has + just + V3' dengan tepat."
+      },
+      {
+        id: 14, chapter: 17, type: "pg",
+        question: "Choose the BEST modal verb for asking PERMISSION politely from your head chef:\n'______ I use the stand mixer, Chef?'",
+        options: [
+          "Must",
+          "May",
+          "Should",
+          "Have to"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'Must' menyatakan kewajiban kuat (harus), bukan meminta izin sopan kepada atasan.",
+          2: "'Should' digunakan untuk meminta atau memberi saran (sebaiknya), bukan meminta izin memakai alat.",
+          3: "'Have to' menyatakan tanggung jawab/keharusan dan tidak diletakkan langsung di depan subjek untuk bertanya izin."
+        },
+        ruleHint: "Cek tabel Modal Verbs di Chapter 17 (Can = ability, Could = polite request, Must = obligation, Have to = responsibility, Should = advice, dan satu modal khusus untuk PERMISSION).",
+        successNote: "Tepat! 'May I use the stand mixer, Chef?' adalah cara paling sopan meminta izin (permission)."
+      },
+      {
+        id: 15, chapter: 17, type: "pg",
+        question: "Choose the BEST pair of modal verbs (Strong Obligation vs Teamwork Suggestion):\n'We ______ wash our hands before preparing food, and we ______ divide the tasks so we can finish faster.'",
+        options: [
+          "should / may",
+          "must / should",
+          "can / must",
+          "may / have to"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Mencuci tangan sebelum menyentuh makanan adalah kewajiban aturan keamanan pangan yang kuat (bukan sekadar saran), dan 'may' adalah izin (bukan saran tim).",
+          2: "'can' hanya berarti kemampuan ('bisa'), padahal mencuci tangan adalah aturan wajib.",
+          3: "'may' adalah izin, bukan aturan wajib mencuci tangan."
+        },
+        ruleHint: "Bedakan di Chapter 17: aturan wajib keamanan pangan (strong obligation) vs saran kerja tim (advice/suggestion).",
+        successNote: "Benar! 'We must wash our hands' (kewajiban kuat) dan 'we should divide the tasks' (saran kerja tim)."
+      },
+      {
+        id: 16, chapter: 17, type: "pg",
+        question: "The head chef has ______ the daily production list, and Andi has ______ the flour to the preparation table.",
+        options: [
+          "wrote / bring",
+          "written / brought",
+          "write / brought",
+          "written / bringed"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'wrote' adalah V2 (bukan V3), dan 'bring' masih berbentuk V1.",
+          2: "'write' masih berbentuk V1, padahal setelah 'has' wajib memakai Past Participle (V3).",
+          3: "'bring' adalah kata kerja tak beraturan (irregular verb), jadi tidak ada bentuk 'bringed'."
+        },
+        ruleHint: "Cek tabel Useful Teamwork Verbs (V1 → V3) di Chapter 17: cari bentuk Past Participle (V3) yang tepat dari 'write' dan 'bring'.",
+        successNote: "Sempurna! V3 dari 'write' adalah 'written' dan V3 dari 'bring' adalah 'brought'."
+      },
+      {
+        id: 17, chapter: 17, type: "pg",
+        question: "Dina: 'I haven't finished decorating the birthday cake yet. Could you help me decorate the sides?'\nRani wants to accept responsibility and express her ability to help. What does she say?",
+        options: [
+          "No, I haven't.",
+          "Of course. I can do that.",
+          "You mustn't decorate it.",
+          "I have already eaten it."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'No, I haven't.' adalah jawaban pendek Present Perfect, tidak menjawab permintaan tolong 'Could you help me?'.",
+          2: "Melarang rekan kerja menghias kue pesanannya tidak masuk akal dan tidak membantu.",
+          3: "Tentu tidak masuk akal memakan kue pesanan pelanggan!"
+        },
+        ruleHint: "Perhatikan situasi Dialogue 2 Chapter 17: rekan kerja meminta tolong dengan 'Could you...?', dan kamu bersedia membantu serta menyatakan kemampuanmu dengan modal 'can'.",
+        successNote: "Tepat! 'Of course. I can do that.' ramah, kooperatif, dan menggunakan modal 'can' dengan benar."
+      },
+      {
+        id: 18, chapter: 17, type: "pgk",
+        question: "Select ALL grammatically CORRECT Present Perfect sentences and questions for reporting kitchen progress.",
+        options: [
+          "I have already measured the ingredients.",
+          "Has Rina made the chocolate cream?",
+          "We hasn't packaged the cookies yet.",
+          "They have cleaned the workstation."
+        ],
+        correct: [0, 1, 3],
+        wrongReasons: {
+          2: "Subjek jamak 'We' harus memakai 'haven't', bukan 'hasn't' (khusus he/she/it)."
+        },
+        ruleHint: "Periksa kecocokan 'have/haven't' (I/you/we/they) vs 'has/hasn't' (he/she/it) + V3 pada setiap kalimat.",
+        successNote: "Mantap! A, B, dan D semuanya tepat secara struktur Present Perfect."
+      },
+      {
+        id: 19, chapter: 17, type: "pgk",
+        question: "Select ALL modal verbs that are CORRECTLY matched with their function in Chapter 17.",
+        options: [
+          "Can → Ability (I can decorate cupcakes.)",
+          "Could → Polite request (Could you help me, please?)",
+          "Must → Strong obligation (We must wear clean uniforms.)",
+          "Should → Strong prohibition / forbidden (You should touch the hot oven.)"
+        ],
+        correct: [0, 1, 2],
+        wrongReasons: {
+          3: "'Should' berfungsi untuk memberi SARAN/NASIHAT (advice/suggestion), bukan larangan keras (dan contoh kalimatnya juga berbahaya!)."
+        },
+        ruleHint: "Cocokkan keenam modal verbs di tabel Key Language Chapter 17 dengan fungsi dan contohnya.",
+        successNote: "Benar! Can (kemampuan), Could (permintaan sopan), dan Must (kewajiban kuat) semuanya tepat."
+      },
+      {
+        id: 20, chapter: 17, type: "pgk",
+        question: "Select ALL CORRECT Base Verb → Past Participle (V3) pairs from Chapter 17.",
+        options: [
+          "do → done",
+          "take → taken",
+          "make → maked",
+          "check → checked"
+        ],
+        correct: [0, 1, 3],
+        wrongReasons: {
+          2: "'make' adalah irregular verb (tidak beraturan), jadi bentuk V3-nya BUKAN 'maked'."
+        },
+        ruleHint: "Cek kembali tabel Useful Teamwork Verbs di Chapter 17: hati-hati pada irregular verbs seperti do, take, make, write, bring.",
+        successNote: "Tepat! do→done, take→taken, dan check→checked semuanya benar (sedangkan V3 dari make adalah 'made')."
+      },
+
+      // ==================== CHAPTER 18: FOLLOWING INSTRUCTIONS & CLARIFICATION (Soal 21–30: 7 PG + 3 PGK) ====================
+      {
+        id: 21, chapter: 18, type: "pg",
+        question: "Choose the grammatically CORRECT pair of Positive and Negative Imperatives for the pastry kitchen.",
+        options: [
+          "Sifting the flour. / Don't touching the hot tray.",
+          "Sift the flour. / Don't touch the hot tray.",
+          "Sifts the flour. / Don't touches the hot tray.",
+          "To sift the flour. / No touch the hot tray."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Kalimat imperative positif maupun negatif ('Don't') tidak boleh memakai bentuk verb-ing ('Sifting / touching').",
+          2: "Kalimat imperative tidak pernah diberi akhiran '-s/-es' ('Sifts / touches').",
+          3: "Imperative positif tidak diawali 'To', dan imperative negatif memakai 'Don't + V1', bukan 'No + V1'."
+        },
+        ruleHint: "Rumus Imperatives Chapter 18: Positif = 'BASE VERB + object'; Negatif = 'Don't + BASE VERB + object'.",
+        successNote: "Benar! 'Sift the flour.' dan 'Don't touch the hot tray.' keduanya menggunakan base verb murni."
+      },
+      {
+        id: 22, chapter: 18, type: "pg",
+        question: "Your head chef speaks very quickly while listing the cake ingredients, and you cannot catch the numbers. What is the MOST POLITE thing to say?",
+        options: [
+          "Stop talking so fast!",
+          "Sorry, Chef. Could you speak more slowly, please?",
+          "I don't like your voice.",
+          "Whatever, I will just guess the numbers."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'Stop talking so fast!' terdengar kasar dan tidak menghormati atasan.",
+          2: "Mengomentari suara atasan secara negatif sangat tidak sopan.",
+          3: "Aturan emas Chapter 18: 'Never guess when an instruction is unclear!'—menebak takaran bisa merusak seluruh adonan."
+        },
+        ruleHint: "Cek bagian Asking for Repetition di Chapter 18: awali dengan 'Sorry' atau 'Excuse me', lalu minta dengan sopan memakai 'Could you... , please?'.",
+        successNote: "Sangat sopan! 'Sorry, Chef. Could you speak more slowly, please?' adalah ungkapan terbaik."
+      },
+      {
+        id: 23, chapter: 18, type: "pg",
+        question: "Chef: 'Add 200 grams of sugar and mix it slowly.' You want to CONFIRM the instruction before starting so you don't make a mistake. What do you say?",
+        options: [
+          "So, I need to add 200 grams of sugar and mix it slowly, right?",
+          "Where is the bakery located?",
+          "I am finished cleaning the table.",
+          "Don't repeat it again!"
+        ],
+        correct: [0],
+        wrongReasons: {
+          1: "Menanyakan lokasi toko roti tidak nyambung dengan instruksi menakar gula.",
+          2: "Pernyataan ini tidak mengonfirmasi takaran gula yang baru saja disebutkan chef.",
+          3: "Ungkapan ini kasar dan bukan kalimat konfirmasi instruksi."
+        },
+        ruleHint: "Lihat bagian Confirming Instructions di Chapter 18: ulangi/ringkas angka dan langkah utamanya lalu akhiri dengan ', right?' atau awali dengan 'Let me confirm...'.",
+        successNote: "Tepat! Mengulang 'So, I need to add 200 grams of sugar..., right?' memastikan tidak ada salah dengar."
+      },
+      {
+        id: 24, chapter: 18, type: "pg",
+        question: "There are three mixing bowls of different sizes on the table, and you are not sure which one the chef wants you to use. Which CLARIFICATION question should you ask?",
+        options: [
+          "Give me a bowl!",
+          "Which bowl should I use?",
+          "How much bowl is this?",
+          "Who is this bowl?"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'Give me a bowl!' adalah perintah kasar, bukan pertanyaan klarifikasi.",
+          2: "'How much' tidak cocok dengan kata benda tunggal terhitung 'bowl' dan tidak menanyakan pilihan mangkuk mana.",
+          3: "'Who' digunakan untuk orang, bukan untuk memilih benda ('bowl')."
+        },
+        ruleHint: "Untuk meminta klarifikasi pilihan benda tertentu di antara beberapa opsi yang ada di meja, gunakan kata tanya pilihan ('... bowl should I use?').",
+        successNote: "Benar! 'Which bowl should I use?' adalah pertanyaan klarifikasi yang singkat, jelas, dan sopan."
+      },
+      {
+        id: 25, chapter: 18, type: "pg",
+        question: "What is the 4-step workplace Speaking Tip taught in Chapter 18 for following a chef's instructions?",
+        options: [
+          "Guess → Do → Hide → Leave",
+          "Listen → Ask → Confirm → Do",
+          "Do → Ask → Guess → Listen",
+          "Confirm → Guess → Ignore → Do"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Menebak ('Guess') dan menyembunyikan ('Hide') melanggar prinsip kerja profesional di dapur.",
+          2: "Kamu tidak boleh langsung mengerjakan ('Do') sebelum mendengarkan dan memastikan instruksinya jelas.",
+          3: "Menebak dan mengabaikan instruksi dapat menyebabkan kesalahan produksi atau kecelakaan kerja."
+        },
+        ruleHint: "Ingat alur Speaking Tip di Chapter 18: dengarkan baik-baik dulu → tanyakan jika ragu → pastikan ulang → baru kerjakan.",
+        successNote: "Tepat! 'Listen → Ask → Confirm → Do' adalah kunci menghindari kesalahan di dapur pastry."
+      },
+      {
+        id: 26, chapter: 18, type: "pg",
+        question: "Chef: 'Fold in the flour gently, then put the tray in the oven.' What does 'Fold in the flour' mean in Bahasa Indonesia?",
+        options: [
+          "Keluarkan kue dari oven",
+          "Aduk balik tepung",
+          "Timbang mentega",
+          "Atur pengatur waktu"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Mengeluarkan kue adalah 'Take the cake out', bukan 'Fold in the flour'.",
+          2: "Menimbang mentega adalah 'Weigh the butter'.",
+          3: "Mengatur pengatur waktu adalah 'Set the timer'."
+        },
+        ruleHint: "Cek Word Bank Kitchen Instructions di Chapter 18: 'fold' adalah teknik mencampur tepung secara lembut agar adonan tetap mengembang.",
+        successNote: "Benar! 'Fold in the flour' berarti aduk balik tepung ke dalam adonan."
+      },
+      {
+        id: 27, chapter: 18, type: "pg",
+        question: "In the pastry kitchen, a new assistant is unsure how to operate an unfamiliar commercial oven. According to the Important Workplace Reminder in Chapter 18, what should the assistant do?",
+        options: [
+          "Press random buttons and guess how it works.",
+          "Ask the chef or supervisor for proper instruction before operating it.",
+          "Leave the oven turned on and walk away.",
+          "Ignore the recipe and use maximum heat."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Menebak cara kerja mesin/oven komersial berbahaya bagi keselamatan kerja dan merusak peralatan.",
+          2: "Meninggalkan peralatan menyala tanpa pengawasan sangat tidak aman.",
+          3: "Mengabaikan resep dan menyetel panas maksimal akan membuat produk gosong."
+        },
+        ruleHint: "Ingat Important Workplace Reminder Chapter 18: jangan mengoperasikan peralatan yang belum dikenal tanpa arahan/instruksi yang benar.",
+        successNote: "Sangat tepat! Selalu minta petunjuk dari chef atau supervisor sebelum mengoperasikan peralatan yang belum familiar."
+      },
+      {
+        id: 28, chapter: 18, type: "pgk",
+        question: "Select ALL polite expressions used to ASK SOMEONE TO REPEAT an instruction (Asking for Repetition).",
+        options: [
+          "Could you repeat that, please?",
+          "Could you say that again, please?",
+          "Pardon me?",
+          "Clean the table immediately!"
+        ],
+        correct: [0, 1, 2],
+        wrongReasons: {
+          3: "'Clean the table immediately!' adalah kalimat perintah langsung (imperative), bukan permintaan pengulangan."
+        },
+        ruleHint: "Cek bagian Asking for Repetition di Chapter 18: cari semua ungkapan sopan saat kamu kurang jelas mendengar ucapan chef.",
+        successNote: "Benar! 'Could you repeat that, please?', 'Could you say that again, please?', dan 'Pardon me?' semuanya untuk meminta pengulangan."
+      },
+      {
+        id: 29, chapter: 18, type: "pgk",
+        question: "Select ALL expressions used for ASKING FOR CLARIFICATION or CONFIRMING INSTRUCTIONS.",
+        options: [
+          "Could you explain that, please?",
+          "Do you mean this baking tray?",
+          "Let me confirm. I should mix the butter and sugar first.",
+          "Don't leave the mixer on."
+        ],
+        correct: [0, 1, 2],
+        wrongReasons: {
+          3: "'Don't leave the mixer on.' adalah larangan/instruksi negatif (negative imperative), bukan permintaan klarifikasi atau konfirmasi."
+        },
+        ruleHint: "Pilih semua kalimat yang menanyakan maksud lebih detail (clarification) atau mengulang instruksi untuk memastikan pemahaman (confirming).",
+        successNote: "Mantap! A dan B meminta klarifikasi, sedangkan C mengonfirmasi pemahaman instruksi."
+      },
+      {
+        id: 30, chapter: 18, type: "pgk",
+        question: "Select ALL grammatically CORRECT Negative Imperatives (safety & baking warnings) from Chapter 18.",
+        options: [
+          "Don't open the oven during baking.",
+          "Don't add too much water to the dough.",
+          "Don't forgets to set the timer.",
+          "Don't leave the mixer on after use."
+        ],
+        correct: [0, 1, 3],
+        wrongReasons: {
+          2: "'Don't forgets' salah karena setelah 'Don't', kata kerja wajib bentuk dasar (V1) tanpa akhiran '-s'."
+        },
+        ruleHint: "Pastikan setiap kalimat larangan memakai pola baku: 'Don't + BASE VERB (tanpa -s/-ing)'.",
+        successNote: "Tepat! A, B, dan D semuanya mengikuti struktur negative imperative yang benar."
+      },
+
+      // ==================== CHAPTER 19: TELEPHONE CALLS PART I (Soal 31–40: 7 PG + 3 PGK) ====================
+      {
+        id: 31, chapter: 19, type: "pg",
+        question: "What is the standard structure for a PROFESSIONAL TELEPHONE GREETING taught in Chapter 19?",
+        options: [
+          "Offer of Help + Goodbye + Price",
+          "Greeting + Workplace + Your Name + Offer of Help",
+          "Hello? + Who are you? + Wait!",
+          "Your Name + Order Number + Delivery Address"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Tidak mungkin mengucapkan 'Goodbye' dan harga di awal saat baru mengangkat telepon.",
+          2: "'Who are you?' dan 'Wait!' terdengar sangat tidak profesional saat menjawab telepon bisnis.",
+          3: "Saat baru mengangkat telepon, kita belum tahu nomor pesanan atau alamat pelanggan."
+        },
+        ruleHint: "Ingat rumus pembuka telepon di Chapter 19 (contoh: 'Good morning. Sweet Bakery. This is Rina. How may I help you?'). Urutkan 4 elemennya!",
+        successNote: "Benar! Urutan profesionalnya adalah Greeting + Workplace + Your Name + Offer of Help."
+      },
+      {
+        id: 32, chapter: 19, type: "pg",
+        question: "The bakery telephone rings at 9:30 a.m. You are Rina at Sweet Bakery. Choose the MOST PROFESSIONAL way to answer the call.",
+        options: [
+          "Hello? What do you want?",
+          "Good morning. Sweet Bakery. This is Rina speaking. How may I help you?",
+          "Yes, Rina here. Speak!",
+          "Good night. Thank you for calling."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'What do you want?' terdengar kasar dan tidak menyebutkan nama toko maupun namamu.",
+          2: "'Speak!' berbentuk perintah kasar dan tidak mencantumkan nama tempat kerja.",
+          3: "Jam 9:30 pagi adalah 'Good morning' (bukan 'Good night'), dan belum menawarkan bantuan."
+        },
+        ruleHint: "Cari jawaban yang memiliki salam pagi yang sesuai, nama toko, perkenalan nama staf, dan tawaran bantuan yang sopan.",
+        successNote: "Profesional sekali! 'Good morning. Sweet Bakery. This is Rina speaking. How may I help you?' lengkap dan ramah."
+      },
+      {
+        id: 33, chapter: 19, type: "pg",
+        question: "Choose the grammatically CORRECT polite telephone request using 'Could'.",
+        options: [
+          "Could you repeats your phone number, please?",
+          "Could you repeating your phone number, please?",
+          "Could you repeat your phone number, please?",
+          "Could you to repeat your phone number, please?"
+        ],
+        correct: [2],
+        wrongReasons: {
+          0: "Remember Chapter 19: setelah 'can' dan 'could', kata kerja tidak boleh ditambah '-s' ('repeats').",
+          1: "Setelah 'Could you', kata kerja harus bentuk dasar (V1), bukan verb-ing ('repeating').",
+          3: "Jangan menambahkan 'to' di antara 'Could you' dan kata kerja dasarnya."
+        },
+        ruleHint: "Rumus baku Chapter 19: 'Could + subject + BASE VERB (V1 murni)?'.",
+        successNote: "Benar! 'Could you repeat your phone number, please?' menggunakan base verb 'repeat'."
+      },
+      {
+        id: 34, chapter: 19, type: "pg",
+        question: "Complete these three telephone questions with the right WH-words:\n1. '______ is calling, please?'\n2. '______ product are you interested in?'\n3. '______ should we deliver the birthday cake?'",
+        options: [
+          "What / Who / Where",
+          "Who / What / Where",
+          "Where / What / Who",
+          "Who / Where / What"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Nomor 1 menanyakan ORANG yang menelepon (bukan 'What'), dan nomor 2 menanyakan PRODUK/benda (bukan 'Who').",
+          2: "'Where' untuk tempat (alamat pengiriman di nomor 3), bukan untuk orang yang menelepon di nomor 1.",
+          3: "Nomor 2 dan 3 tertukar antara pertanyaan benda/produk ('What') dan tempat ('Where')."
+        },
+        ruleHint: "Cocokkan fungsi 3 WH-Questions Chapter 19: orang (siapa?) → benda/produk (apa?) → alamat pengiriman (di mana?).",
+        successNote: "Tepat! 1. Who (orang), 2. What (produk), 3. Where (alamat pengiriman)."
+      },
+      {
+        id: 35, chapter: 19, type: "pg",
+        question: "A caller speaks softly and you want to ask them to wait on the phone for a moment while you check the order. Which expression is the MOST POLITE?",
+        options: [
+          "Wait on the phone!",
+          "Could you hold the line, please?",
+          "Don't hang up, wait!",
+          "Can you waiting?"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'Wait on the phone!' terlalu langsung/kasar untuk standar etika telepon profesional.",
+          2: "'Don't hang up, wait!' terdengar tergesa-gesa dan kurang sopan.",
+          3: "Ada kesalahan grammar: setelah 'Can you', kata kerja harus bentuk dasar (V1), bukan verb-ing ('waiting')."
+        },
+        ruleHint: "Cek tabel Compare the Expressions di Chapter 19: ungkapan sopan dengan 'Could you... , please?' untuk meminta penelepon menunggu di saluran telepon ('hold the line').",
+        successNote: "Benar! 'Could you hold the line, please?' adalah ungkapan standar telepon yang sangat sopan."
+      },
+      {
+        id: 36, chapter: 19, type: "pg",
+        question: "A customer calls asking if 100 mini croissants can be delivered tomorrow morning, but you haven't checked the kitchen schedule yet. According to Chapter 19's Workplace Reminder, what should you do?",
+        options: [
+          "Promise immediately that the delivery is 100% guaranteed.",
+          "Collect the details politely and tell the caller you will check with the pastry team first.",
+          "Hang up the phone because 100 pieces is too many.",
+          "Give the customer another customer's phone number."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Workplace Reminder Chapter 19 melarang staf menjanjikan ketersediaan produk atau waktu kirim sebelum mengecek terlebih dahulu.",
+          2: "Menutup telepon sepihak sangat tidak profesional.",
+          3: "Workplace Reminder menekankan untuk selalu menjaga kerahasiaan data pribadi pelanggan!"
+        },
+        ruleHint: "Ingat Important Workplace Reminder di Chapter 19: catat detailnya dengan teliti dan jangan berjanji sebelum mengonfirmasi dengan tim dapur atau supervisor.",
+        successNote: "Profesional! Mengumpulkan detail dulu lalu mengecek ketersediaan bersama tim pastry adalah prosedur yang benar."
+      },
+      {
+        id: 37, chapter: 19, type: "pg",
+        question: "Which expression is BEST for politely closing a business telephone call at Sweet Bakery?",
+        options: [
+          "Okay, bye.",
+          "Thank you for calling Sweet Bakery. Have a nice day.",
+          "I am hanging up now.",
+          "Don't call again."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'Okay, bye.' terlalu kasual untuk percakapan telepon profesional dengan pelanggan atau pemasok.",
+          2: "'I am hanging up now.' terdengar dingin dan tidak ramah.",
+          3: "'Don't call again.' sangat kasar dan merusak citra toko roti."
+        },
+        ruleHint: "Cek tabel Polite Expressions on the Telephone (Ending the call) di Chapter 19: ucapkan terima kasih telah menelepon disertai harapan hari yang menyenangkan.",
+        successNote: "Tepat! 'Thank you for calling Sweet Bakery. Have a nice day.' adalah penutup telepon yang ramah dan profesional."
+      },
+      {
+        id: 38, chapter: 19, type: "pgk",
+        question: "Select ALL polite expressions for asking a caller's name or purpose on the telephone.",
+        options: [
+          "May I have your name, please?",
+          "Who is calling, please?",
+          "Could you tell me the purpose of your call?",
+          "Hey, what's your problem?"
+        ],
+        correct: [0, 1, 2],
+        wrongReasons: {
+          3: "'Hey, what's your problem?' terdengar kasar dan sangat tidak profesional untuk telepon bisnis."
+        },
+        ruleHint: "Pilih semua kalimat tanya sopan dari Word Bank Chapter 19 yang menanyakan nama penelepon atau tujuan panggilan.",
+        successNote: "Benar! A, B, dan C adalah cara sopan menanyakan nama dan tujuan penelepon."
+      },
+      {
+        id: 39, chapter: 19, type: "pgk",
+        question: "Select ALL grammatically CORRECT telephone questions using 'Can' or 'Could'.",
+        options: [
+          "Could I have your contact number, please?",
+          "Can I speak to the head chef?",
+          "Could you explaining your request?",
+          "Could you tell me when you need the cake?"
+        ],
+        correct: [0, 1, 3],
+        wrongReasons: {
+          2: "'Could you explaining...' salah karena setelah modal 'Could', kata kerja wajib bentuk dasar (V1), bukan verb-ing."
+        },
+        ruleHint: "Pastikan setiap pertanyaan 'Can / Could + subject' langsung diikuti BASE VERB (V1 murni).",
+        successNote: "Mantap! A, B, dan D semuanya akurat secara struktur grammar."
+      },
+      {
+        id: 40, chapter: 19, type: "pgk",
+        question: "Select ALL good telephone etiquette practices recommended in Chapter 19.",
+        options: [
+          "Speak clearly, slowly, and politely (smile when you speak).",
+          "Write down important details accurately.",
+          "Protect customers' personal information.",
+          "Shout loudly on the phone so the caller can hear you."
+        ],
+        correct: [0, 1, 2],
+        wrongReasons: {
+          3: "Workplace Reminder Chapter 19 secara tegas mengingatkan: 'Speak clearly and do not shout.' (jangan berteriak di telepon)."
+        },
+        ruleHint: "Ingat Speaking Tip dan Important Workplace Reminder di Chapter 19 tentang etika berbicara, mencatat detail, dan menjaga privasi pelanggan.",
+        successNote: "Benar! Berbicara jelas & sopan, mencatat detail dengan akurat, dan menjaga data pelanggan adalah etika telepon profesional."
+      },
+
+      // ==================== CHAPTER 20: TELEPHONE CALLS PART II (Soal 41–50: 7 PG + 3 PGK) ====================
+      {
+        id: 41, chapter: 20, type: "pg",
+        question: "A supplier calls to speak to the head chef, but the chef is busy supervising cake production in the kitchen. What is the BEST response?",
+        options: [
+          "The chef doesn't want to talk to you.",
+          "I'm sorry. The chef is busy right now. Would you like to leave a message?",
+          "Call back next year.",
+          "I don't know where the chef is. Goodbye."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Kalimat ini terdengar sangat tidak sopan dan bisa menyinggung pemasok/pelanggan.",
+          2: "Jawaban ini tidak profesional dan tidak memberikan solusi.",
+          3: "Langsung menutup telepon tanpa menawarkan mencatat pesan melanggar prosedur menerima telepon."
+        },
+        ruleHint: "Ingat alur Chapter 20 saat atasan tidak bisa dihubungi: minta maaf dengan sopan + jelaskan singkat bahwa chef sedang sibuk + tawarkan untuk mencatat pesan.",
+        successNote: "Tepat! 'I'm sorry. The chef is busy right now. Would you like to leave a message?' sopan dan solutif."
+      },
+      {
+        id: 42, chapter: 20, type: "pg",
+        question: "Simple Present for Workplace Routines: Choose the grammatically CORRECT sentence explaining regular duties at Sweet Bakery.",
+        options: [
+          "The chef does not answers calls during production.",
+          "The supervisor check the production schedule every morning.",
+          "The receptionist takes telephone messages accurately.",
+          "Does the chef works today?"
+        ],
+        correct: [2],
+        wrongReasons: {
+          0: "Setelah 'does not', kata kerja utama harus bentuk dasar (V1), bukan ditambah '-s' ('answers').",
+          1: "Subjek tunggal 'The supervisor' (he/she) membutuhkan akhiran '-s' pada kata kerja Simple Present ('checks').",
+          3: "Pada pertanyaan 'Does + subject + ...', kata kerja utama tidak boleh ditambah '-s' ('works')."
+        },
+        ruleHint: "Cek aturan Simple Present di Chapter 20: kalimat positif subjek tunggal memakai verb + s/es, sedangkan setelah 'does/does not' kata kerja kembali ke V1 murni.",
+        successNote: "Benar! 'The receptionist takes telephone messages accurately.' menggunakan subjek tunggal + verb+s dengan tepat."
+      },
+      {
+        id: 43, chapter: 20, type: "pg",
+        question: "Choose the grammatically CORRECT polite question when offering or asking about a telephone message.",
+        options: [
+          "Could you leaving a message?",
+          "May I taking a message?",
+          "Could you call back later?",
+          "Can I to take your phone number?"
+        ],
+        correct: [2],
+        wrongReasons: {
+          0: "Setelah 'Could you', kata kerja wajib bentuk dasar (V1), bukan verb-ing ('leaving').",
+          1: "Setelah 'May I', kata kerja wajib bentuk dasar (V1), bukan verb-ing ('taking').",
+          3: "Setelah 'Can I', JANGAN menambahkan kata 'to' sebelum kata kerjanya."
+        },
+        ruleHint: "Aturan modal verb Chapter 20: 'Can / Could / May + subject + BASE VERB (V1 murni)?'.",
+        successNote: "Tepat! 'Could you call back later?' memakai 'Could you + base verb' dengan benar."
+      },
+      {
+        id: 44, chapter: 20, type: "pg",
+        question: "Complete these two message-taking WH-questions:\n1. '______ can the chef call you back?' (asking about time)\n2. '______ can we contact you?' (asking about contact details)",
+        options: [
+          "Where / Who",
+          "When / How",
+          "Why / What",
+          "Who / When"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "'Where' menanyakan tempat dan 'Who' menanyakan orang—bukan waktu maupun cara menghubungi.",
+          2: "'Why' menanyakan alasan dan 'What' menanyakan isi pesan—tidak cocok dengan 'call you back' (waktu) dan 'contact you' (cara/nomor).",
+          3: "Nomor 1 membutuhkan kata tanya WAKTU (bukan 'Who'), dan nomor 2 membutuhkan kata tanya CARA menghubungi (bukan 'When')."
+        },
+        ruleHint: "Cek tabel WH-Questions for Taking Messages di Chapter 20: kata tanya untuk waktu ('kapan?') dan cara/detail kontak ('bagaimana?').",
+        successNote: "Benar! 'When can the chef call you back?' (waktu) dan 'How can we contact you?' (cara/nomor kontak)."
+      },
+      {
+        id: 45, chapter: 20, type: "pg",
+        question: "You have just finished writing down Mr. Rudi's delivery message. What should you say BEFORE ending the telephone call?",
+        options: [
+          "I will change your message if needed. Bye.",
+          "Let me confirm your message. Fresh Food Supplier will deliver 10 kg of flour tomorrow at 9 a.m. Is that correct? Thank you, I'll pass on your message to the chef.",
+          "I promise the chef will definitely call you in two minutes.",
+          "Wait on the line forever."
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Workplace Reminder Chapter 20: JANGAN pernah mengubah pesan penelepon ('Do not change the caller's message').",
+          2: "Workplace Reminder Chapter 20: jangan menjanjikan chef pasti menelepon balik sebelum chef menyetujuinya ('Do not promise that the chef will call back unless the chef has agreed').",
+          3: "Meminta penelepon menunggu terus padahal pesan sudah dicatat tidak masuk akal."
+        },
+        ruleHint: "Ingat Speaking Tip Chapter 20: selalu konfirmasi ulang nama, nomor, dan isi pesan, lalu yakinkan penelepon bahwa kamu akan meneruskan pesannya ('pass on your message').",
+        successNote: "Sempurna! Mengonfirmasi isi pesan lalu mengatakan 'I'll pass on your message to the chef' mencegah kesalahan komunikasi."
+      },
+      {
+        id: 46, chapter: 20, type: "pg",
+        question: "Now you walk into the pastry kitchen to DELIVER the telephone message to the head chef. Which report is the clearest and most complete?",
+        options: [
+          "Chef, someone called about flour.",
+          "Good morning, Chef. Mr. Rudi from Fresh Food Supplier called. He wants to confirm the delivery of 10 kg of flour tomorrow at 9 a.m. His phone number is 0812-3456-7890.",
+          "Chef, read this paper yourself, I'm busy.",
+          "Hello, Chef. Where is the flour?"
+        ],
+        correct: [1],
+        wrongReasons: {
+          0: "Terlalu singkat dan tidak mencantumkan nama penelepon, nama perusahaan, jumlah, waktu pengiriman, maupun nomor teleponnya.",
+          2: "Terdengar tidak sopan dan tidak menyampaikan pesan secara profesional kepada chef.",
+          3: "Kalimat ini tidak menyampaikan pesan dari penelepon sama sekali."
+        },
+        ruleHint: "Ingat Speaking Framework Delivering a Telephone Message di Chapter 20: sapa chef, sebutkan siapa yang menelepon & perusahaannya, tujuan/detail penting, dan nomor teleponnya.",
+        successNote: "Luar biasa! Pesan tersampaikan secara sopan, lengkap, dan akurat kepada chef."
+      },
+      {
+        id: 47, chapter: 20, type: "pg",
+        question: "Confirming Details with Yes/No Questions: Choose the grammatically CORRECT Yes/No question to check if the delivery is tomorrow.",
+        options: [
+          "Is the delivery scheduled for tomorrow?",
+          "Are the delivery scheduled for tomorrow?",
+          "Does the delivery is tomorrow?",
+          "Do the chef available now?"
+        ],
+        correct: [0],
+        wrongReasons: {
+          1: "'the delivery' adalah subjek tunggal (tanpa -s), sehingga tidak cocok dengan 'Are'.",
+          2: "Jangan menggabungkan kata bantu 'Does' dan 'is' secara bersamaan dalam satu pertanyaan.",
+          3: "'available' adalah kata sifat (memakai 'Is', bukan 'Do'), dan 'the chef' adalah tunggal."
+        },
+        ruleHint: "Cek pola Yes/No Questions di Chapter 20: untuk subjek tunggal 'the delivery' + kata sifat/past participle ('scheduled'), gunakan bentuk 'to be' tunggal di awal kalimat tanya.",
+        successNote: "Benar! 'Is the delivery scheduled for tomorrow?' tepat untuk mengonfirmasi jadwal pengiriman."
+      },
+      {
+        id: 48, chapter: 20, type: "pgk",
+        question: "Select ALL essential details that MUST be recorded on a TELEPHONE MESSAGE FORM (Chapter 20).",
+        options: [
+          "Caller's name and company/workplace",
+          "Caller's phone number",
+          "Message details (quantities, date, time) and action required",
+          "The caller's favorite movie"
+        ],
+        correct: [0, 1, 2],
+        wrongReasons: {
+          3: "'The caller's favorite movie' tidak ada hubungannya dengan pesan bisnis atau operasional dapur pastry."
+        },
+        ruleHint: "Ingat tabel Important Message Information di Chapter 20: informasi apa saja yang dibutuhkan chef agar bisa menindaklanjuti panggilan tersebut?",
+        successNote: "Benar! Nama & perusahaan penelepon, nomor telepon, detail pesan (jumlah/tanggal/waktu), serta tindakan yang diminta wajib dicatat."
+      },
+      {
+        id: 49, chapter: 20, type: "pgk",
+        question: "Select ALL polite ways to inform a caller that the chef or manager is UNAVAILABLE right now.",
+        options: [
+          "I'm sorry. The chef is busy in the kitchen right now.",
+          "The supervisor is not available at the moment.",
+          "The manager is in a meeting right now.",
+          "He doesn't care about your call."
+        ],
+        correct: [0, 1, 2],
+        wrongReasons: {
+          3: "'He doesn't care about your call.' sangat kasar dan tidak profesional."
+        },
+        ruleHint: "Pilih semua ungkapan sopan dari Word Bank Chapter 20 yang menjelaskan bahwa atasan sedang sibuk, sedang rapat, atau belum bisa dihubungi saat ini.",
+        successNote: "Tepat! A, B, dan C adalah cara sopan dan profesional menjelaskan ketidaktersediaan atasan."
+      },
+      {
+        id: 50, chapter: 20, type: "pgk",
+        question: "Select ALL expressions that are CORRECTLY matched with their Indonesian meaning in Chapter 20.",
+        options: [
+          "Leave a message → Meninggalkan pesan",
+          "Pass on a message → Meneruskan pesan",
+          "Return a call → Menutup telepon secara sepihak",
+          "Hold the line → Tunggu di telepon"
+        ],
+        correct: [0, 1, 3],
+        wrongReasons: {
+          2: "'Return a call' berarti MEMBALAS PANGGILAN (menelepon kembali), bukan menutup telepon secara sepihak."
+        },
+        ruleHint: "Cek kembali Word Bank Taking and Delivering Messages di Chapter 20 (leave a message, pass on a message, return a call, hold the line).",
+        successNote: "Benar! Leave a message, Pass on a message, dan Hold the line semuanya cocok dengan artinya."
+      }
+    ];
+
+    // ==================== STATE & LOCALSTORAGE ====================
+    const STORAGE_KEY = "quiz_book2_ch16_20_v1";
+
+    /**
+     * progress[id] = {
+     *   status: 'unanswered' | 'first_try' | 'corrected' | 'wrong',
+     *   attempts: number,
+     *   selected: number[]  // 0-based indices [0..3]
+     * }
+     */
+    const state = {
+      filter: "all",          // 'all' | 'ch16'..'ch20' | 'pg' | 'pgk' | 'unsolved'
+      activeIds: [],          // filtered question IDs
+      currentIndex: 0,        // index within activeIds
+      selection: [],          // currently selected 0-based indices
+      checkedWrong: false,    // true right after an incorrect check (to mark wrong options soft red)
+      progress: {},           // persisted map
+      lastQuestionId: 1,      // persisted last viewed question ID
+      view: "quiz"            // 'quiz' | 'eval'
+    };
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === "object") {
+            state.progress = parsed.progress || {};
+            state.lastQuestionId = parsed.lastQuestionId || 1;
+            state.filter = parsed.filter || "all";
+          }
+        }
+      } catch (err) {
+        console.warn("Gagal membaca localStorage:", err);
+      }
+    }
+
+    function saveState() {
+      try {
+        const q = getCurrentQuestion();
+        if (q) state.lastQuestionId = q.id;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          progress: state.progress,
+          lastQuestionId: state.lastQuestionId,
+          filter: state.filter
+        }));
+      } catch (err) {
+        console.warn("Gagal menyimpan localStorage:", err);
+      }
+    }
+
+    function getProg(id) {
+      return state.progress[id] || { status: "unanswered", attempts: 0, selected: [] };
+    }
+
+    function isSolved(status) {
+      return status === "first_try" || status === "corrected";
+    }
+
+    // ==================== DOM REFERENCES ====================
+    const headerScoreBadge = document.getElementById("headerScoreBadge");
+    const globalProgressBar = document.getElementById("globalProgressBar");
+    const openEvalBtn = document.getElementById("openEvalBtn");
+    const openDrawerBtn = document.getElementById("openDrawerBtn");
+
+    const quizView = document.getElementById("quizView");
+    const evalView = document.getElementById("evalView");
+    const stickyBottomBar = document.getElementById("stickyBottomBar");
+
+    const emptyFilterCard = document.getElementById("emptyFilterCard");
+    const emptyToEvalBtn = document.getElementById("emptyToEvalBtn");
+    const emptyToAllBtn = document.getElementById("emptyToAllBtn");
+
+    const questionCard = document.getElementById("questionCard");
+    const qChapterBadge = document.getElementById("qChapterBadge");
+    const qTypeBadge = document.getElementById("qTypeBadge");
+    const qAttemptBadge = document.getElementById("qAttemptBadge");
+    const qNumberLabel = document.getElementById("qNumberLabel");
+    const questionText = document.getElementById("questionText");
+    const pgkCallout = document.getElementById("pgkCallout");
+    const optionsContainer = document.getElementById("optionsContainer");
+    const feedbackCard = document.getElementById("feedbackCard");
+
+    const prevBtn = document.getElementById("prevBtn");
+    const checkBtn = document.getElementById("checkBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const nextBtnLabel = document.getElementById("nextBtnLabel");
+
+    // Drawer elements
+    const drawerModal = document.getElementById("drawerModal");
+    const closeDrawerBtn = document.getElementById("closeDrawerBtn");
+    const drawerSummaryText = document.getElementById("drawerSummaryText");
+    const drawerGrid = document.getElementById("drawerGrid");
+    const drawerEvalBtn = document.getElementById("drawerEvalBtn");
+    const drawerResetBtn = document.getElementById("drawerResetBtn");
+
+    // Evaluation elements
+    const evalEmoji = document.getElementById("evalEmoji");
+    const evalSub = document.getElementById("evalSub");
+    const evalTotalScore = document.getElementById("evalTotalScore");
+    const evalAccuracyPct = document.getElementById("evalAccuracyPct");
+    const statCorrect = document.getElementById("statCorrect");
+    const statWrong = document.getElementById("statWrong");
+    const statUnanswered = document.getElementById("statUnanswered");
+    const evalFirstTryChip = document.getElementById("evalFirstTryChip");
+    const evalPgScore = document.getElementById("evalPgScore");
+    const evalPgPct = document.getElementById("evalPgPct");
+    const evalPgkScore = document.getElementById("evalPgkScore");
+    const evalPgkPct = document.getElementById("evalPgkPct");
+    const evalChapterList = document.getElementById("evalChapterList");
+    const retryUnsolvedBtn = document.getElementById("retryUnsolvedBtn");
+    const backToQuizBtn = document.getElementById("backToQuizBtn");
+    const evalResetAllBtn = document.getElementById("evalResetAllBtn");
+
+    // Reset modal elements
+    const resetModal = document.getElementById("resetModal");
+    const cancelResetBtn = document.getElementById("cancelResetBtn");
+    const confirmResetBtn = document.getElementById("confirmResetBtn");
+
+    // ==================== FILTER & VIEW LOGIC ====================
+    function getFilteredQuestions(filterKey) {
+      if (filterKey === "all") return QUESTIONS;
+      if (filterKey === "ch16") return QUESTIONS.filter(q => q.chapter === 16);
+      if (filterKey === "ch17") return QUESTIONS.filter(q => q.chapter === 17);
+      if (filterKey === "ch18") return QUESTIONS.filter(q => q.chapter === 18);
+      if (filterKey === "ch19") return QUESTIONS.filter(q => q.chapter === 19);
+      if (filterKey === "ch20") return QUESTIONS.filter(q => q.chapter === 20);
+      if (filterKey === "pg") return QUESTIONS.filter(q => q.type === "pg");
+      if (filterKey === "pgk") return QUESTIONS.filter(q => q.type === "pgk");
+      if (filterKey === "unsolved") return QUESTIONS.filter(q => !isSolved(getProg(q.id).status));
+      return QUESTIONS;
+    }
+
+    function updateFilterChipsUI() {
+      document.querySelectorAll(".filter-chip").forEach(btn => {
+        if (btn.dataset.filter === state.filter) {
+          btn.className = "filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-[#B45309] text-white shadow-xs transition active:scale-95";
+        } else {
+          btn.className = "filter-chip shrink-0 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-[#F3E8D8] text-[#451A03]/80 transition active:scale-95";
+        }
+      });
+    }
+
+    function applyFilter(filterKey, preferredId = null) {
+      const list = getFilteredQuestions(filterKey);
+      state.filter = filterKey;
+      state.activeIds = list.map(q => q.id);
+      updateFilterChipsUI();
+
+      if (state.activeIds.length === 0) {
+        state.currentIndex = 0;
+      } else if (preferredId && state.activeIds.includes(preferredId)) {
+        state.currentIndex = state.activeIds.indexOf(preferredId);
+      } else {
+        const firstUnfinished = state.activeIds.findIndex(id => !isSolved(getProg(id).status));
+        state.currentIndex = firstUnfinished >= 0 ? firstUnfinished : 0;
+      }
+
+      saveState();
+      if (state.view === "quiz") {
+        renderCurrentQuestion();
+      }
+    }
+
+    function setView(viewName) {
+      state.view = viewName;
+      if (viewName === "quiz") {
+        evalView.classList.add("hidden");
+        quizView.classList.remove("hidden");
+        stickyBottomBar.classList.remove("hidden");
+        renderCurrentQuestion();
+      } else {
+        quizView.classList.add("hidden");
+        stickyBottomBar.classList.add("hidden");
+        evalView.classList.remove("hidden");
+        renderEvaluation();
+      }
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    document.querySelectorAll(".filter-chip").forEach(btn => {
+      btn.addEventListener("click", () => {
+        applyFilter(btn.dataset.filter, null);
+        setView("quiz");
+      });
+    });
+
+    emptyToEvalBtn.addEventListener("click", () => setView("eval"));
+    emptyToAllBtn.addEventListener("click", () => {
+      applyFilter("all", 1);
+      setView("quiz");
+    });
+
+    // ==================== HEADER STATS ====================
+    function updateHeaderStats() {
+      const solvedCount = QUESTIONS.filter(q => isSolved(getProg(q.id).status)).length;
+      const pct = Math.round((solvedCount / QUESTIONS.length) * 100);
+      headerScoreBadge.textContent = `${solvedCount}/50 Benar`;
+      globalProgressBar.style.width = `${pct}%`;
+    }
+
+    // ==================== QUESTION & OPTIONS RENDERING ====================
+    function getCurrentQuestion() {
+      if (state.activeIds.length === 0) return null;
+      const id = state.activeIds[state.currentIndex];
+      return QUESTIONS.find(q => q.id === id) || null;
+    }
+
+    function renderCurrentQuestion() {
+      updateHeaderStats();
+      const q = getCurrentQuestion();
+
+      if (!q) {
+        emptyFilterCard.classList.remove("hidden");
+        questionCard.classList.add("hidden");
+        optionsContainer.classList.add("hidden");
+        feedbackCard.classList.add("hidden");
+        stickyBottomBar.classList.add("hidden");
+        return;
+      }
+
+      emptyFilterCard.classList.add("hidden");
+      questionCard.classList.remove("hidden");
+      optionsContainer.classList.remove("hidden");
+      stickyBottomBar.classList.remove("hidden");
+
+      const prog = getProg(q.id);
+      const solved = isSolved(prog.status);
+
+      if (solved) {
+        state.selection = [...q.correct];
+        state.checkedWrong = false;
+      } else if (prog.status === "wrong" && prog.selected.length > 0) {
+        state.selection = [...prog.selected];
+        state.checkedWrong = true;
+      } else {
+        state.selection = [];
+        state.checkedWrong = false;
+      }
+
+      const meta = CHAPTER_META[q.chapter];
+      qChapterBadge.textContent = `${meta.short} • ${meta.title}`;
+      qNumberLabel.textContent = `Soal ${q.id} / 50` + (state.activeIds.length < 50 ? ` (Urutan ${state.currentIndex + 1}/${state.activeIds.length})` : "");
+      qAttemptBadge.textContent = prog.attempts > 0 ? `${prog.attempts}x cek` : "";
+      questionText.textContent = q.question;
+
+      if (q.type === "pg") {
+        qTypeBadge.textContent = "Pilihan Ganda • Pilih 1";
+        qTypeBadge.className = "px-2.5 py-1 rounded-full text-[11px] font-extrabold bg-stone-100 text-[#451A03]";
+        pgkCallout.classList.add("hidden");
+      } else {
+        qTypeBadge.textContent = "Pilihan Ganda Kompleks • Pilih semua yang benar";
+        qTypeBadge.className = "px-2.5 py-1 rounded-full text-[11px] font-extrabold bg-indigo-100 text-indigo-900";
+        pgkCallout.classList.remove("hidden");
+      }
+
+      // Subtle card animation
+      questionCard.classList.remove("animate-fade-up");
+      void questionCard.offsetWidth;
+      questionCard.classList.add("animate-fade-up");
+
+      renderOptions(q, solved);
+
+      if (solved) {
+        renderCorrectFeedback(q, prog);
+      } else if (prog.status === "wrong" && prog.selected.length > 0) {
+        renderAutoCorrectionFeedback(q, prog.selected);
+      } else {
+        feedbackCard.classList.add("hidden");
+        feedbackCard.innerHTML = "";
+      }
+
+      updateBottomBar(solved, prog);
+      saveState();
+      quizView.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderOptions(q, solved) {
+      optionsContainer.innerHTML = "";
+
+      q.options.forEach((optText, idx) => {
+        const letter = LETTERS[idx];
+        const isSelected = state.selection.includes(idx);
+        // Mark ONLY the wrong options the user checked in soft red (never mark unchecked right options!)
+        const isCheckedWrongOption = !solved && state.checkedWrong && isSelected && !q.correct.includes(idx);
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.disabled = solved;
+
+        let cardCls = "w-full min-h-[54px] text-left p-3.5 rounded-2xl border-2 transition-all flex items-center gap-3 ";
+        let badgeCls = "w-8 h-8 rounded-xl flex items-center justify-center font-extrabold text-sm shrink-0 transition-all ";
+        let indicator = "";
+
+        if (solved && isSelected) {
+          cardCls += "border-emerald-600 bg-emerald-50 text-emerald-950 shadow-xs";
+          badgeCls += "bg-emerald-600 text-white";
+          indicator = `<span class="ml-auto text-emerald-600 font-extrabold text-lg shrink-0">✓</span>`;
+        } else if (solved && !isSelected) {
+          cardCls += "border-stone-200/70 bg-white/60 text-stone-400 opacity-70";
+          badgeCls += "bg-stone-100 text-stone-400";
+        } else if (isCheckedWrongOption) {
+          // Soft red highlight for wrong selected option
+          cardCls += "border-rose-400 bg-rose-50/90 text-rose-950 shadow-xs active:scale-[0.99]";
+          badgeCls += "bg-rose-500 text-white";
+          indicator = `<span class="ml-auto text-rose-600 font-extrabold text-base shrink-0">✕</span>`;
+        } else if (isSelected) {
+          if (q.type === "pgk") {
+            cardCls += "border-indigo-600 bg-indigo-50/90 text-indigo-950 shadow-xs active:scale-[0.99]";
+            badgeCls += "bg-indigo-600 text-white";
+            indicator = `<span class="ml-auto w-5 h-5 rounded-md bg-indigo-600 text-white flex items-center justify-center text-xs font-bold shrink-0">✓</span>`;
+          } else {
+            cardCls += "border-[#D97706] bg-amber-50/90 text-[#451A03] shadow-xs active:scale-[0.99]";
+            badgeCls += "bg-[#D97706] text-white";
+            indicator = `<span class="ml-auto w-5 h-5 rounded-full border-[5px] border-[#D97706] bg-white shrink-0"></span>`;
+          }
+        } else {
+          cardCls += "border-[#F3E8D8] bg-white hover:border-[#FDE68A] text-[#451A03] active:scale-[0.99]";
+          badgeCls += "bg-amber-50 text-[#B45309]";
+          indicator = q.type === "pgk"
+            ? `<span class="ml-auto w-5 h-5 rounded-md border-2 border-amber-300 bg-white shrink-0"></span>`
+            : `<span class="ml-auto w-5 h-5 rounded-full border-2 border-amber-300 bg-white shrink-0"></span>`;
+        }
+
+        btn.className = cardCls;
+        btn.innerHTML = `
+          <span class="${badgeCls}">${letter}</span>
+          <span class="text-[15px] sm:text-[15.5px] font-medium leading-snug flex-1">${optText}</span>
+          ${indicator}
+        `;
+
+        if (!solved) {
+          btn.addEventListener("click", () => toggleOption(q, idx));
+        }
+
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function toggleOption(q, idx) {
+      // Once user edits their choice, clear the stale red mark until they re-check
+      state.checkedWrong = false;
+
+      if (q.type === "pg") {
+        state.selection = [idx];
+      } else {
+        if (state.selection.includes(idx)) {
+          state.selection = state.selection.filter(i => i !== idx);
+        } else {
+          state.selection = [...state.selection, idx].sort((a, b) => a - b);
+        }
+      }
+      renderOptions(q, false);
+      updateBottomBar(false, getProg(q.id));
+    }
+
+    function updateBottomBar(solved, prog) {
+      prevBtn.disabled = state.currentIndex === 0;
+      const isLast = state.currentIndex === state.activeIds.length - 1;
+      nextBtnLabel.textContent = isLast ? "Hasil" : "Next";
+
+      if (solved) {
+        checkBtn.disabled = false;
+        checkBtn.className = "flex-1 min-h-[52px] px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-extrabold text-sm shadow-md shadow-emerald-900/15 transition flex items-center justify-center gap-1.5";
+        checkBtn.innerHTML = isLast ? "Lihat Hasil &amp; Evaluasi 🏆" : "Lanjut Soal Berikutnya →";
+      } else {
+        checkBtn.disabled = state.selection.length === 0;
+        checkBtn.className = "flex-1 min-h-[52px] px-4 rounded-2xl bg-[#B45309] hover:bg-amber-800 active:scale-[0.98] disabled:bg-stone-300 disabled:text-stone-500 disabled:shadow-none text-white font-extrabold text-sm shadow-md shadow-amber-900/15 transition flex items-center justify-center gap-1.5";
+        checkBtn.innerHTML = prog.attempts > 0 ? "Periksa Ulang" : "Periksa Jawaban";
+      }
+    }
+
+    // ==================== SMART AUTO-CORRECTION ENGINE (ZERO SPOILERS) ====================
+    function arraysMatch(a, b) {
+      if (a.length !== b.length) return false;
+      const sa = [...a].sort((x, y) => x - y);
+      const sb = [...b].sort((x, y) => x - y);
+      return sa.every((v, i) => v === sb[i]);
+    }
+
+    function handleCheckAction() {
+      const q = getCurrentQuestion();
+      if (!q) return;
+      const prog = getProg(q.id);
+      const solved = isSolved(prog.status);
+
+      if (solved) {
+        if (state.currentIndex < state.activeIds.length - 1) {
+          state.currentIndex++;
+          renderCurrentQuestion();
+        } else {
+          setView("eval");
+        }
+        return;
+      }
+
+      if (state.selection.length === 0) return;
+
+      const attempts = prog.attempts + 1;
+      const isCorrect = arraysMatch(state.selection, q.correct);
+
+      if (isCorrect) {
+        const status = attempts === 1 ? "first_try" : "corrected";
+        state.checkedWrong = false;
+        state.progress[q.id] = { status, attempts, selected: [...state.selection] };
+        saveState();
+
+        updateHeaderStats();
+        qAttemptBadge.textContent = `${attempts}x cek`;
+        renderOptions(q, true);
+        renderCorrectFeedback(q, state.progress[q.id]);
+        updateBottomBar(true, state.progress[q.id]);
+      } else {
+        state.checkedWrong = true;
+        state.progress[q.id] = { status: "wrong", attempts, selected: [...state.selection] };
+        saveState();
+
+        updateHeaderStats();
+        qAttemptBadge.textContent = `${attempts}x cek`;
+        renderOptions(q, false);
+        renderAutoCorrectionFeedback(q, state.selection);
+        updateBottomBar(false, state.progress[q.id]);
+
+        feedbackCard.classList.remove("animate-shake");
+        void feedbackCard.offsetWidth;
+        feedbackCard.classList.add("animate-shake");
+      }
+
+      setTimeout(() => {
+        feedbackCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 60);
+    }
+
+    function renderCorrectFeedback(q, prog) {
+      feedbackCard.classList.remove("hidden", "border-rose-300", "bg-amber-50/95");
+      feedbackCard.classList.add("border-emerald-300", "bg-emerald-50/95");
+
+      const title = prog.status === "first_try"
+        ? "Benar di percobaan pertama! 🎉"
+        : `Hebat! Berhasil diperbaiki di percobaan ke-${prog.attempts} 👏`;
+
+      feedbackCard.innerHTML = `
+        <div class="flex items-start gap-3">
+          <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-extrabold text-lg shrink-0">✓</div>
+          <div class="flex-1 min-w-0">
+            <div class="font-extrabold text-sm text-emerald-950">${title}</div>
+            <p class="text-[13px] text-emerald-900/90 mt-1 leading-relaxed">${q.successNote}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAutoCorrectionFeedback(q, selectedIndices) {
+      feedbackCard.classList.remove("hidden", "border-emerald-300", "bg-emerald-50/95");
+      feedbackCard.classList.add("border-rose-300", "bg-amber-50/95");
+
+      let errorHTML = "";
+
+      if (q.type === "pg") {
+        const idx = selectedIndices[0];
+        const letter = LETTERS[idx];
+        const reason = (q.wrongReasons && q.wrongReasons[idx])
+          ? q.wrongReasons[idx]
+          : "Pilihan ini belum sesuai dengan aturan grammar atau etika komunikasi pastry.";
+        errorHTML = `<p class="text-[13px] text-rose-950 leading-relaxed"><strong>Opsi ${letter}:</strong> ${reason}</p>`;
+      } else {
+        // PGK: Explain EVERY wrong checked option + ONLY THE COUNT of missed right options (NO SPOILERS)
+        const wrongPicked = selectedIndices.filter(i => !q.correct.includes(i));
+        const missedCount = q.correct.filter(i => !selectedIndices.includes(i)).length;
+        const bullets = [];
+
+        if (wrongPicked.length === 0 && missedCount > 0) {
+          bullets.push(`Pilihan yang kamu centang sudah tepat, tetapi masih ada <strong>${missedCount} pernyataan benar</strong> yang belum kamu pilih.`);
+        } else {
+          wrongPicked.forEach(idx => {
+            const letter = LETTERS[idx];
+            const reason = (q.wrongReasons && q.wrongReasons[idx])
+              ? q.wrongReasons[idx]
+              : "Pernyataan ini belum memenuhi syarat soal.";
+            bullets.push(`<strong>Opsi ${letter} salah:</strong> ${reason}`);
+          });
+
+          if (missedCount > 0) {
+            bullets.push(`Masih ada <strong>${missedCount} pernyataan benar</strong> yang belum kamu pilih.`);
+          } else if (wrongPicked.length > 0) {
+            bullets.push(`Semua pernyataan benar sebenarnya sudah masuk pilihanmu, tetapi masih ada <strong>${wrongPicked.length} opsi salah</strong> yang ikut tercentang.`);
+          }
+        }
+
+        errorHTML = `<ul class="list-disc pl-4 space-y-1.5 text-[13px] text-rose-950 leading-relaxed">${bullets.map(b => `<li>${b}</li>`).join("")}</ul>`;
+      }
+
+      feedbackCard.innerHTML = `
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <span class="w-8 h-8 rounded-xl bg-rose-600 text-white flex items-center justify-center text-sm font-extrabold shrink-0">!</span>
+          <div>
+            <div class="font-extrabold text-sm text-rose-700">Auto-Koreksi • Belum Tepat</div>
+            <div class="text-[11px] font-medium text-amber-950/75">Ganti pilihanmu lalu tekan <strong>Periksa Ulang</strong>.</div>
+          </div>
+        </div>
+
+        <div class="bg-rose-50 border border-rose-200 rounded-2xl p-3 mb-2.5">
+          <div class="text-[11px] font-extrabold uppercase tracking-wide text-rose-700 mb-1">❌ Letak Kesalahanmu:</div>
+          ${errorHTML}
+        </div>
+
+        <div class="bg-white border border-[#FDE68A] rounded-2xl p-3">
+          <div class="text-[11px] font-extrabold uppercase tracking-wide text-[#B45309] mb-1">🧭 Seharusnya (Petunjuk):</div>
+          <p class="text-[13px] text-[#451A03]/90 leading-relaxed">${q.ruleHint}</p>
+        </div>
+      `;
+    }
+
+    // Bottom navigation listeners
+    checkBtn.addEventListener("click", handleCheckAction);
+
+    prevBtn.addEventListener("click", () => {
+      if (state.currentIndex > 0) {
+        state.currentIndex--;
+        renderCurrentQuestion();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (state.currentIndex < state.activeIds.length - 1) {
+        state.currentIndex++;
+        renderCurrentQuestion();
+      } else {
+        setView("eval");
+      }
+    });
+
+    // ==================== BOTTOM SHEET: DAFTAR SOAL (1–50) ====================
+    function openDrawer() {
+      const currentQ = getCurrentQuestion();
+      const activeId = currentQ ? currentQ.id : -1;
+
+      let cCorrect = 0;
+      let cWrong = 0;
+      let cUnanswered = 0;
+
+      drawerGrid.innerHTML = "";
+
+      QUESTIONS.forEach(q => {
+        const p = getProg(q.id);
+        if (isSolved(p.status)) cCorrect++;
+        else if (p.status === "wrong") cWrong++;
+        else cUnanswered++;
+
+        const isActive = q.id === activeId && state.view === "quiz";
+        const btn = document.createElement("button");
+        btn.type = "button";
+
+        let cls = "h-12 rounded-2xl font-extrabold text-sm flex items-center justify-center transition active:scale-95 relative ";
+        if (isSolved(p.status)) {
+          cls += "bg-emerald-600 text-white shadow-xs";
+        } else if (p.status === "wrong") {
+          cls += "bg-rose-600 text-white shadow-xs";
+        } else {
+          cls += "bg-stone-200/80 text-stone-700 hover:bg-stone-300/80";
+        }
+
+        if (isActive) {
+          cls += " ring-[3px] ring-offset-2 ring-[#D97706]";
+        }
+
+        btn.className = cls;
+        btn.innerHTML = `<span>${q.id}</span>${q.type === "pgk" ? '<span class="absolute top-1 right-1.5 w-1.5 h-1.5 rounded-full bg-indigo-300"></span>' : ''}`;
+        btn.addEventListener("click", () => {
+          closeDrawer();
+          if (!state.activeIds.includes(q.id)) {
+            applyFilter("all", q.id);
+          } else {
+            state.currentIndex = state.activeIds.indexOf(q.id);
+          }
+          setView("quiz");
+        });
+
+        drawerGrid.appendChild(btn);
+      });
+
+      drawerSummaryText.textContent = `Benar: ${cCorrect} • Perlu Perbaikan: ${cWrong} • Belum: ${cUnanswered}`;
+      drawerModal.classList.remove("hidden");
+    }
+
+    function closeDrawer() {
+      drawerModal.classList.add("hidden");
+    }
+
+    openDrawerBtn.addEventListener("click", openDrawer);
+    closeDrawerBtn.addEventListener("click", closeDrawer);
+    drawerModal.addEventListener("click", e => {
+      if (e.target === drawerModal) closeDrawer();
+    });
+    drawerEvalBtn.addEventListener("click", () => {
+      closeDrawer();
+      setView("eval");
+    });
+    drawerResetBtn.addEventListener("click", () => {
+      closeDrawer();
+      openResetModal();
+    });
+
+    // ==================== EVALUATION VIEW ====================
+    function renderEvaluation() {
+      updateHeaderStats();
+
+      let firstTry = 0;
+      let corrected = 0;
+      let wrongCount = 0;
+      let unanswered = 0;
+
+      QUESTIONS.forEach(q => {
+        const st = getProg(q.id).status;
+        if (st === "first_try") firstTry++;
+        else if (st === "corrected") corrected++;
+        else if (st === "wrong") wrongCount++;
+        else unanswered++;
+      });
+
+      const totalSolved = firstTry + corrected;
+      const pct = Math.round((totalSolved / QUESTIONS.length) * 100);
+
+      evalTotalScore.textContent = `${totalSolved}/50`;
+      evalAccuracyPct.textContent = `${pct}%`;
+      statCorrect.textContent = totalSolved;
+      statWrong.textContent = wrongCount;
+      statUnanswered.textContent = unanswered;
+      evalFirstTryChip.textContent = `${firstTry} benar 1x coba`;
+
+      if (totalSolved === 50 && firstTry >= 40) {
+        evalEmoji.textContent = "🏆";
+        evalSub.textContent = "Luar biasa! Materi Book 2 (Ch. 16–20) sudah sangat kamu kuasai.";
+      } else if (totalSolved === 50) {
+        evalEmoji.textContent = "🎉";
+        evalSub.textContent = "Hebat! Semua 50 soal sudah berhasil kamu taklukkan.";
+      } else {
+        evalEmoji.textContent = "🥐";
+        evalSub.textContent = "Terus berlatih dengan Auto-Koreksi sampai 50/50 benar!";
+      }
+
+      // PG vs PGK stats
+      const pgQs = QUESTIONS.filter(q => q.type === "pg");
+      const pgkQs = QUESTIONS.filter(q => q.type === "pgk");
+      const pgSolved = pgQs.filter(q => isSolved(getProg(q.id).status)).length;
+      const pgkSolved = pgkQs.filter(q => isSolved(getProg(q.id).status)).length;
+
+      evalPgScore.textContent = `${pgSolved} / ${pgQs.length}`;
+      evalPgPct.textContent = `${Math.round((pgSolved / pgQs.length) * 100)}% benar`;
+      evalPgkScore.textContent = `${pgkSolved} / ${pgkQs.length}`;
+      evalPgkPct.textContent = `${Math.round((pgkSolved / pgkQs.length) * 100)}% benar`;
+
+      // Breakdown per Chapter (Ch. 16–20)
+      evalChapterList.innerHTML = "";
+      [16, 17, 18, 19, 20].forEach(ch => {
+        const chQs = QUESTIONS.filter(q => q.chapter === ch);
+        const chFirst = chQs.filter(q => getProg(q.id).status === "first_try").length;
+        const chCorr = chQs.filter(q => getProg(q.id).status === "corrected").length;
+        const chSolved = chFirst + chCorr;
+
+        const row = document.createElement("div");
+        row.innerHTML = `
+          <div class="flex items-center justify-between text-xs mb-1.5 gap-2">
+            <span class="font-bold text-[#451A03] truncate">Ch. ${ch}: ${CHAPTER_META[ch].title}</span>
+            <span class="font-extrabold text-[#B45309] shrink-0">${chSolved}/${chQs.length} <span class="text-stone-400 font-semibold">(${Math.round((chSolved / chQs.length) * 100)}%)</span></span>
+          </div>
+          <div class="w-full h-2.5 bg-amber-100 rounded-full overflow-hidden flex">
+            <div class="h-full bg-emerald-600 transition-all" style="width: ${(chFirst / chQs.length) * 100}%"></div>
+            <div class="h-full bg-[#D97706] transition-all" style="width: ${(chCorr / chQs.length) * 100}%"></div>
+          </div>
+        `;
+        evalChapterList.appendChild(row);
+      });
+
+      const unsolvedCount = QUESTIONS.length - totalSolved;
+      if (unsolvedCount > 0) {
+        retryUnsolvedBtn.classList.remove("hidden");
+        retryUnsolvedBtn.textContent = `🔁 Ulangi Soal Belum Benar (${unsolvedCount})`;
+      } else {
+        retryUnsolvedBtn.classList.add("hidden");
+      }
+    }
+
+    openEvalBtn.addEventListener("click", () => {
+      setView(state.view === "eval" ? "quiz" : "eval");
+    });
+
+    backToQuizBtn.addEventListener("click", () => setView("quiz"));
+
+    retryUnsolvedBtn.addEventListener("click", () => {
+      applyFilter("unsolved", null);
+      setView("quiz");
+    });
+
+    // ==================== RESET MODAL ====================
+    function openResetModal() {
+      resetModal.classList.remove("hidden");
+    }
+    function closeResetModal() {
+      resetModal.classList.add("hidden");
+    }
+
+    evalResetAllBtn.addEventListener("click", openResetModal);
+    cancelResetBtn.addEventListener("click", closeResetModal);
+    resetModal.addEventListener("click", e => {
+      if (e.target === resetModal) closeResetModal();
+    });
+
+    confirmResetBtn.addEventListener("click", () => {
+      state.progress = {};
+      state.lastQuestionId = 1;
+      state.filter = "all";
+      state.checkedWrong = false;
+      localStorage.removeItem(STORAGE_KEY);
+      closeResetModal();
+      applyFilter("all", 1);
+      setView("quiz");
+    });
+
+    // ==================== INITIALIZE APP ====================
+    loadState();
+    applyFilter(state.filter, state.lastQuestionId);
+  </script>
+</body>
+</html>
